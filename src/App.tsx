@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Guide from "./pages/Guide";
 import GuideTopic from "./pages/GuideTopic";
+import Bookmarks from "./pages/Bookmarks";
 import MorseCode from "./pages/MorseCode";
 import Braille from "./pages/Braille";
 import SOS from "./pages/SOS";
