@@ -72,7 +72,7 @@ const MorseCode = () => {
   const stopFlash = () => { abortRef.current = true; setFlashOn(false); setFlashing(false); };
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto">
+    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="Morse Code Tool">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-6">📡 Morse Code</h1>
 
