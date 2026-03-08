@@ -115,7 +115,7 @@ const EmergencyMode = () => {
   }, []);
 
   return (
-    <div className="min-h-screen px-4 py-6 max-w-lg mx-auto">
+    <div className="min-h-screen px-4 py-6 max-w-lg mx-auto pb-24" role="main" aria-label="Emergency Mode">
       {/* SOS flash overlay */}
       {sosFlash && <div className="fixed inset-0 z-50 bg-white" onClick={stopSOS} />}
       {/* Flashlight overlay */}
