@@ -1694,7 +1694,7 @@ export const guideTopics: GuideTopic[] = [
           "PIB Fact Check (Twitter/X: @PIBFactCheck) debunks fake news in real-time",
           "WhatsApp forwards are NOT reliable sources — check the 'forwarded' label",
           "Use reverse image search (Google Lens) to verify viral images",
-          "Rumor spreading during disasters is punishable under IPC Section 505",
+          "Rumor spreading during disasters is punishable under BNS Section 353 (formerly IPC Section 505)",
           "If unsure, don't share — even well-intentioned misinformation causes panic",
           "Local administration and police will issue verified updates through official handles",
         ],

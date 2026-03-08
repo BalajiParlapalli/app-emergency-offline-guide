@@ -4,12 +4,12 @@ import { BookOpen, Radio, Braces, Siren, Backpack, AlertTriangle, Navigation, Za
 const sections = [
   { to: "/emergency", icon: AlertTriangle, label: "🚨 Emergency Mode", desc: "Call, locate, signal — one tap", highlight: true },
   { to: "/emergency-checklist", icon: Zap, label: "⚡ 3-Min Checklist", desc: "Step-by-step disaster response" },
-  { to: "/edc", icon: Backpack, label: "EDC Kit", desc: "Everyday carry survival checklist" },
   { to: "/guide", icon: BookOpen, label: "Survival Guide", desc: "24 topics — first aid, disasters & more" },
-  { to: "/morse", icon: Radio, label: "Morse Code", desc: "Encode, decode & flash messages" },
-  { to: "/braille", icon: Braces, label: "Braille", desc: "Braille alphabet & survival phrases" },
   { to: "/sos", icon: Siren, label: "SOS Signals", desc: "Emergency signals & India helplines" },
   { to: "/compass", icon: Navigation, label: "🧭 Compass", desc: "Digital compass for navigation" },
+  { to: "/morse", icon: Radio, label: "Morse Code", desc: "Encode, decode & flash messages" },
+  { to: "/braille", icon: Braces, label: "Braille", desc: "Braille alphabet & survival phrases" },
+  { to: "/edc", icon: Backpack, label: "EDC Kit", desc: "Everyday carry survival checklist" },
 ];
 
 const Index = () => {
