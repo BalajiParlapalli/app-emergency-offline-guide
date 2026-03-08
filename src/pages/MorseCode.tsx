@@ -66,7 +66,8 @@ const MorseCode = () => {
         await sleep(CHAR_GAP_MS);
       }
     }
-    disableTorch();
+    await disableTorch();
+    releaseTorch();
     setFlashing(false);
   }, [enableTorch, disableTorch]);
 
