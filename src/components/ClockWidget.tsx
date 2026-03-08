@@ -114,8 +114,8 @@ const ClockWidget = () => {
             <Clock className="h-4 w-4 text-primary" aria-hidden="true" />
             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Current Time</span>
           </div>
-          <p className="text-2xl font-bold mono text-primary leading-tight" aria-live="polite" aria-label={`Current time: ${timeStr}`}>
-            {timeStr}
+          <p className="text-2xl font-bold mono text-primary leading-tight" aria-live="polite" aria-label={`Current time in IST: ${timeStr}`}>
+            {timeStr} <span className="text-sm align-middle">IST</span>
           </p>
           <p className="text-sm mono text-muted-foreground" aria-label={`Current date: ${dateStr}`}>
             {dateStr}
