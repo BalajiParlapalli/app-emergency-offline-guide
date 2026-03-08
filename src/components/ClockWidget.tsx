@@ -3,6 +3,8 @@ import { Clock, Bell, BellOff, X } from "lucide-react";
 import { toIST, getISTHHMM } from "@/lib/ist-time";
 
 const ALARM_KEY = "survival-alarm";
+
+const ClockWidget = () => {
   const [now, setNow] = useState(new Date());
   const [alarmTime, setAlarmTime] = useState<string>(() => localStorage.getItem(ALARM_KEY) || "");
   const [alarmActive, setAlarmActive] = useState(!!localStorage.getItem(ALARM_KEY));
