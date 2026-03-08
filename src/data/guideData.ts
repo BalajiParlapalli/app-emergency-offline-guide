@@ -1198,7 +1198,7 @@ export const guideTopics: GuideTopic[] = [
           "Wash hands with soap for 20 seconds — before eating, after toilet, after handling waste",
           "No water? Use alcohol-based sanitizer (60%+ alcohol)",
           "Ash from fire can be used as soap substitute in emergencies",
-          "Diarrhoeal diseases kill 100,000+ children annually in India — handwashing prevents 50% of cases",
+          "Diarrhoeal diseases are a leading cause of child mortality in India — handwashing prevents up to 50% of cases",
           "Nail hygiene: keep nails short to prevent bacterial harboring",
           "Teach children the 6-step handwashing technique",
         ],
