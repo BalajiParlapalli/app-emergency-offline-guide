@@ -771,7 +771,7 @@ export const guideTopics: GuideTopic[] = [
           "India's cyclone-prone coasts: Odisha, Andhra Pradesh, Tamil Nadu, Gujarat, West Bengal",
           "Follow IMD (India Meteorological Department) warnings — obey evacuation orders",
           "Secure loose objects outdoors — they become projectiles in high winds",
-          "Board up windows or tape them in X pattern to reduce shattering",
+          "Board up windows with plywood if possible — close and latch all windows and doors",
           "Stock 72 hours of food, water, and medicines",
           "Strongest point of house: interior room on lowest floor, away from windows",
           "Eye of the storm — temporary calm does NOT mean it's over, second half is coming",
