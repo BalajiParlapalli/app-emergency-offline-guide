@@ -104,8 +104,8 @@ const MorseCode = () => {
         )}
       </div>
 
-      {/* Flashlight screen */}
-      {flashOn && (
+      {/* Flashlight screen (only when using screen fallback) */}
+      {flashOn && usingScreen && (
         <div className="fixed inset-0 z-50 bg-white" role="status" aria-label="Morse code flashing" onClick={stopFlash} />
       )}
 
