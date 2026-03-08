@@ -948,7 +948,7 @@ export const guideTopics: GuideTopic[] = [
           "Do NOT move the victim unless there's immediate danger (fire, traffic)",
           "Check ABCs: Airway, Breathing, Circulation",
           "Control bleeding with direct pressure using any clean cloth",
-          "Good Samaritan Law (India 2016): you CANNOT be harassed for helping accident victims",
+          "Good Samaritan Law (Motor Vehicles Amendment Act 2019): you CANNOT be harassed for helping accident victims",
           "Take victim to nearest hospital — within the Golden Hour (first 60 minutes)",
           "Bystanders: at minimum, call for help — do NOT just watch and film",
         ],
