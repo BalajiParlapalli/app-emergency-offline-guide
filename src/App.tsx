@@ -25,6 +25,7 @@ const App = () => (
           <Route path="/checklist" element={<Checklist />} />
           <Route path="/morse" element={<MorseCode />} />
           <Route path="/braille" element={<Braille />} />
+          <Route path="/sos" element={<SOS />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
