@@ -42,8 +42,8 @@ const Guide = () => {
       <h1 className="text-3xl font-bold text-primary mb-2">📖 Survival Guide</h1>
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-muted-foreground">{guideTopics.length} topics — India focused</p>
-        <Link to="/guide/bookmarks" className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors">
-          <Bookmark className="h-4 w-4" /> Saved
+        <Link to="/guide/bookmarks" className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors" aria-label="View saved bookmarks">
+          <Bookmark className="h-4 w-4" aria-hidden="true" /> Saved
         </Link>
       </div>
 
