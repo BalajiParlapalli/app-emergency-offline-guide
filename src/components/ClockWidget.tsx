@@ -21,11 +21,8 @@ const ClockWidget = () => {
   // Check alarm against IST
   useEffect(() => {
     if (!alarmActive || !alarmTime) return;
-    const istOff = 5.5 * 60 * 60 * 1000;
-    const utcNow = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
-    const istNow = new Date(utcNow + istOff);
-    const hhmm = `${String(istNow.getHours()).padStart(2, "0")}:${String(istNow.getMinutes()).padStart(2, "0")}`;
-    if (hhmm === alarmTime && istNow.getSeconds() === 0) {
+    const hhmm = getISTHHMM(now);
+    const istNow = toIST(now);
       setAlarmRinging(true);
       startAlarmSound();
     }
