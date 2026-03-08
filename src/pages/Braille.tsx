@@ -75,7 +75,7 @@ const Braille = () => {
           Feel or mark dots on any surface — paper, wood, clay — to leave messages others can read by touch in darkness.
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 

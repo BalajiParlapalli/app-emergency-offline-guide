@@ -77,7 +77,7 @@ const EmergencyChecklist = () => {
           <p className="text-sm text-muted-foreground mt-1">Stay where you are if safe. Help others. Wait for rescue.</p>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

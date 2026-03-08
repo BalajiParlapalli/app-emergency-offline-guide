@@ -241,7 +241,7 @@ const Notebook = () => {
           )}
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

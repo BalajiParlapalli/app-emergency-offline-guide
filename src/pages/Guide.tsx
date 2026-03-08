@@ -110,7 +110,7 @@ const Guide = () => {
           ))}
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

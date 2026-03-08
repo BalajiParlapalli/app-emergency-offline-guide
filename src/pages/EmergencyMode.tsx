@@ -238,7 +238,7 @@ const EmergencyMode = () => {
           📋 Numbers verified via NDMA, MoHFW, Indian Red Cross Society, Civil Defence India (2024)
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 

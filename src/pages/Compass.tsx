@@ -164,7 +164,7 @@ const Compass = () => {
           <li>• Without compass: sun rises in East, sets in West. At noon, shadow points North in India.</li>
         </ul>
       </div>
-    </div>
+    </main>
   );
 };
 

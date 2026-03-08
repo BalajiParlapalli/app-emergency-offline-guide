@@ -209,7 +209,7 @@ const EDCKit = () => {
           );
         })}
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -118,7 +118,7 @@ const GuideTopic = () => {
           </Link>
         ) : <span />}
       </div>
-    </div>
+    </main>
   );
 };
 

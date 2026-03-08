@@ -130,7 +130,7 @@ const SOS = () => {
           📋 Sources: NDMA (ndma.gov.in), NDRF (ndrf.gov.in), NIDM (nidm.gov.in), MoHFW (mohfw.gov.in), Indian Red Cross Society (indianredcross.org), Civil Defence India. Numbers verified as of 2024.
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 

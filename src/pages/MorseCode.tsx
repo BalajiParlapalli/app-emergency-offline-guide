@@ -140,7 +140,7 @@ const MorseCode = () => {
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 };
 
