@@ -29,7 +29,7 @@ const EmergencyChecklist = () => {
 
       {/* Progress */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="flex-1 h-2 rounded-full bg-secondary overflow-hidden">
+        <div className="flex-1 h-2 rounded-full bg-secondary overflow-hidden" role="progressbar" aria-valuenow={done} aria-valuemin={0} aria-valuemax={steps.length} aria-label={`${done} of ${steps.length} steps completed`}>
           <div
             className="h-full bg-primary transition-all duration-500 rounded-full"
             style={{ width: `${(done / steps.length) * 100}%` }}
