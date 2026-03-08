@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import BackLink from "@/components/BackLink";
+import { useTorch } from "@/hooks/use-torch";
 
 const morseMap: Record<string, string> = {
   A: "·−", B: "−···", C: "−·−·", D: "−··", E: "·", F: "··−·",
