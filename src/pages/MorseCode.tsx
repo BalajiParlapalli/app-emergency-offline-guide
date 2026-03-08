@@ -45,7 +45,7 @@ const WORD_GAP_MS = 1400;
 const MorseCode = () => {
   const [input, setInput] = useState("");
   const [flashing, setFlashing] = useState(false);
-  const { torchOn: flashOn, usingScreen, enableTorch, disableTorch, releaseTorch } = useTorch();
+  const { torchOn: flashOn, usingScreen, torchError, enableTorch, disableTorch, releaseTorch } = useTorch();
   const abortRef = useRef(false);
 
   const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
@@ -77,6 +77,12 @@ const MorseCode = () => {
     <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="Morse Code Tool">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-6">📡 Morse Code</h1>
+      {/* Torch warning */}
+      {torchError && (
+        <div className="mb-4 border border-destructive/30 bg-destructive/10 rounded-lg p-3 text-xs text-destructive">
+          ⚠️ {torchError} — Using screen flash as fallback.
+        </div>
+      )}
 
       {/* Encoder */}
       <div className="mb-6">

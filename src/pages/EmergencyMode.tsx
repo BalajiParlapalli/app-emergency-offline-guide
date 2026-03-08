@@ -20,7 +20,7 @@ const EmergencyMode = () => {
   const [locError, setLocError] = useState<string | null>(null);
   const [sosActive, setSosActive] = useState(false);
   const [sosFlash, setSosFlash] = useState(false);
-  const { torchOn: flashlightOn, usingScreen: flashUsingScreen, toggleTorch: toggleFlashlight } = useTorch();
+  const { torchOn: flashlightOn, usingScreen: flashUsingScreen, torchError: flashError, toggleTorch: toggleFlashlight } = useTorch();
   const [alarmOn, setAlarmOn] = useState(false);
   const audioRef = useRef<AudioContext | null>(null);
   const oscRef = useRef<OscillatorNode | null>(null);
@@ -145,15 +145,25 @@ const EmergencyMode = () => {
       </div>
 
       {/* Quick tools */}
+      {flashError && (
+        <div className="mb-4 border border-destructive/30 bg-destructive/10 rounded-lg p-3 text-xs text-destructive">
+          ⚠️ Torch: {flashError} — Using screen light as fallback.
+        </div>
+      )}
       <h2 className="text-lg font-semibold mb-3">Quick Tools</h2>
       <div className="grid grid-cols-2 gap-2 mb-6">
         <button
           onClick={toggleFlashlight}
-          className="touch-target flex flex-col items-center gap-2 border border-border rounded-lg p-4 hover:border-primary/50 transition-colors bg-card"
-          aria-label="Toggle flashlight — turns screen white"
+          className={`touch-target flex flex-col items-center gap-2 border rounded-lg p-4 transition-colors ${
+            flashlightOn ? "border-primary bg-primary/20" : "border-border bg-card hover:border-primary/50"
+          }`}
+          aria-label="Toggle flashlight"
         >
           <Flashlight className="h-8 w-8 text-primary" aria-hidden="true" />
-          <span className="text-sm font-semibold">🔦 Flashlight</span>
+          <span className="text-sm font-semibold">{flashlightOn ? "⬛ Turn Off" : "🔦 Flashlight"}</span>
+          {flashUsingScreen && flashlightOn && (
+            <span className="text-xs text-muted-foreground">Screen mode</span>
+          )}
         </button>
 
         <button
