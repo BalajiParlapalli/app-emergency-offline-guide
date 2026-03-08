@@ -134,8 +134,9 @@ const EmergencyMode = () => {
             key={number}
             href={`tel:${number}`}
             className="flex items-center gap-3 border-2 border-destructive/50 rounded-lg p-3 bg-destructive/10 hover:bg-destructive/20 transition-colors active:scale-95"
+            aria-label={`Call ${label}: ${number}`}
           >
-            <Phone className="h-5 w-5 text-destructive shrink-0" />
+            <Phone className="h-5 w-5 text-destructive shrink-0" aria-hidden="true" />
             <div>
               <p className="font-bold text-lg leading-tight mono">{number}</p>
               <p className="text-xs text-muted-foreground leading-tight">{label}</p>
