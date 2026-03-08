@@ -30,10 +30,68 @@ const recoverFromStaleCache = async () => {
 };
 
 if ("serviceWorker" in navigator) {
-  registerSW({
+  const updateSW = registerSW({
     immediate: true,
     onRegisteredSW: (_, registration) => registration?.update(),
     onRegisterError: (error) => console.error("PWA registration failed", error),
+    onNeedRefresh() {
+      showUpdateToast(updateSW);
+    },
+  });
+}
+
+function showUpdateToast(updateSW: (reloadPage?: boolean) => Promise<void>) {
+  const container = document.createElement("div");
+  container.setAttribute("role", "alert");
+  container.setAttribute("aria-live", "assertive");
+  Object.assign(container.style, {
+    position: "fixed",
+    bottom: "80px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: "9999",
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    padding: "12px 20px",
+    borderRadius: "12px",
+    background: "hsl(24 95% 46%)",
+    color: "#fff",
+    fontSize: "14px",
+    fontWeight: "600",
+    boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
+    animation: "slideUp 0.3s ease-out",
+    maxWidth: "90vw",
+  });
+
+  container.innerHTML = `
+    <span>🔄 New version available</span>
+    <button id="pwa-update-btn" style="
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    ">Update now</button>
+  `;
+
+  // Add animation keyframes
+  if (!document.getElementById("pwa-toast-style")) {
+    const style = document.createElement("style");
+    style.id = "pwa-toast-style";
+    style.textContent = `@keyframes slideUp { from { opacity:0; transform: translateX(-50%) translateY(20px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }`;
+    document.head.appendChild(style);
+  }
+
+  document.body.appendChild(container);
+
+  container.querySelector("#pwa-update-btn")!.addEventListener("click", () => {
+    container.querySelector("#pwa-update-btn")!.textContent = "Updating…";
+    updateSW(true);
   });
 }
 
