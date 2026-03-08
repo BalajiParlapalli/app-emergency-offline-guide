@@ -81,8 +81,12 @@ const ClockWidget = () => {
     };
   }, []);
 
-  const timeStr = now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
-  const dateStr = now.toLocaleDateString("en-IN", { day: "2-digit", month: "2-digit", year: "numeric" });
+  // Convert to IST (UTC+5:30)
+  const istOffset = 5.5 * 60 * 60 * 1000;
+  const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
+  const ist = new Date(utc + istOffset);
+  const timeStr = ist.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
+  const dateStr = ist.toLocaleDateString("en-IN", { day: "2-digit", month: "2-digit", year: "numeric" });
 
   return (
     <div className="w-full border border-border rounded-xl bg-card p-4 mb-6">
