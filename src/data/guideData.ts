@@ -1047,7 +1047,7 @@ export const guideTopics: GuideTopic[] = [
           "Never pet stray dogs — even seemingly friendly ones can bite",
           "Dog body language: bared teeth, raised hackles, stiff tail = aggressive",
           "ABC (Animal Birth Control) program exists but coverage varies by city",
-          "Anti-rabies vaccine is available free at all government hospitals — 5-dose course",
+          "Anti-rabies vaccine is available free at all government hospitals — 4-dose course (days 0, 3, 7, 14)",
         ],
       },
     ],
