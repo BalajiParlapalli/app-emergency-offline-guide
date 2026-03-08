@@ -27,7 +27,11 @@ interface Note {
 
 const getNotes = (): Note[] => {
   const stored = localStorage.getItem(getNotesKey());
-  return stored ? JSON.parse(stored) : [];
+  try {
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
 };
 
 const saveNotes = (notes: Note[]) => {

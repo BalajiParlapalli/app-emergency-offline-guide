@@ -16,7 +16,11 @@ export interface BookmarkItem {
 
 export const getBookmarks = (): BookmarkItem[] => {
   const stored = localStorage.getItem(BOOKMARKS_KEY);
-  return stored ? JSON.parse(stored) : [];
+  try {
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
 };
 
 export const toggleBookmark = (item: BookmarkItem): boolean => {
