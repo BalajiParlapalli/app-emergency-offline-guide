@@ -20,7 +20,7 @@ const EmergencyMode = () => {
   const [locError, setLocError] = useState<string | null>(null);
   const [sosActive, setSosActive] = useState(false);
   const [sosFlash, setSosFlash] = useState(false);
-  const [flashlightOn, setFlashlightOn] = useState(false);
+  const { torchOn: flashlightOn, usingScreen: flashUsingScreen, toggleTorch: toggleFlashlight } = useTorch();
   const [alarmOn, setAlarmOn] = useState(false);
   const audioRef = useRef<AudioContext | null>(null);
   const oscRef = useRef<OscillatorNode | null>(null);
