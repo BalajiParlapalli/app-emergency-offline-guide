@@ -26,6 +26,7 @@ const App = () => (
           <Route path="/edc" element={<EDCKit />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/guide/:topicSlug" element={<GuideTopic />} />
+          <Route path="/guide/bookmarks" element={<Bookmarks />} />
           <Route path="/morse" element={<MorseCode />} />
           <Route path="/braille" element={<Braille />} />
           <Route path="/sos" element={<SOS />} />
