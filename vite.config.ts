@@ -20,6 +20,9 @@ export default defineConfig(({ mode }) => ({
       injectRegister: "script-defer",
       includeAssets: ["favicon.ico", "robots.txt", "placeholder.svg"],
       workbox: {
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2,json}"],
         navigateFallback: "index.html",
         navigateFallbackDenylist: [/^\/~oauth/],
@@ -45,9 +48,9 @@ export default defineConfig(({ mode }) => ({
         ],
       },
       manifest: {
-        name: "After Apocalypse - Survival Kit",
+        name: "Survival Kit — An Emergency Offline Toolkit",
         short_name: "Survival Kit",
-        description: "Offline survival guide for post-apocalypse — India focused",
+        description: "Emergency offline toolkit for India — first aid, SOS, compass, and survival guidance.",
         theme_color: "#e8720c",
         background_color: "#141414",
         display: "standalone",
