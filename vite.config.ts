@@ -20,6 +20,9 @@ export default defineConfig(({ mode }) => ({
       injectRegister: "script-defer",
       includeAssets: ["favicon.ico", "robots.txt", "placeholder.svg"],
       workbox: {
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2,json}"],
         navigateFallback: "index.html",
         navigateFallbackDenylist: [/^\/~oauth/],
