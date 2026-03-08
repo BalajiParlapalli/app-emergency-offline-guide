@@ -45,7 +45,7 @@ const WORD_GAP_MS = 1400;
 const MorseCode = () => {
   const [input, setInput] = useState("");
   const [flashing, setFlashing] = useState(false);
-  const [flashOn, setFlashOn] = useState(false);
+  const { torchOn: flashOn, usingScreen, enableTorch, disableTorch } = useTorch();
   const abortRef = useRef(false);
 
   const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
