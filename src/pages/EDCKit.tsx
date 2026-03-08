@@ -142,7 +142,11 @@ const defaultCategories: Category[] = [
 const EDCKit = () => {
   const [categories, setCategories] = useState<Category[]>(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : defaultCategories;
+    try {
+      return stored ? JSON.parse(stored) : defaultCategories;
+    } catch {
+      return defaultCategories;
+    }
   });
 
   useEffect(() => {
