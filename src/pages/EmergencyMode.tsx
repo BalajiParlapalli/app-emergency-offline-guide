@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import BackLink from "@/components/BackLink";
 import { Phone, Heart, Flashlight, Radio, MapPin, Volume2, VolumeX } from "lucide-react";
+import { useTorch } from "@/hooks/use-torch";
 
 const emergencyNumbers = [
   { label: "National Emergency", number: "112", note: "Works without SIM" },
