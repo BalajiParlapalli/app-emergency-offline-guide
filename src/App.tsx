@@ -5,8 +5,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BottomNav from "./components/BottomNav";
-import VoiceCommand from "./components/VoiceCommand";
 import ScrollToTop from "./components/ScrollToTop";
+
+const VoiceCommand = lazy(() => import("./components/VoiceCommand"));
 
 const Guide = lazy(() => import("./pages/Guide"));
 const GuideTopic = lazy(() => import("./pages/GuideTopic"));
