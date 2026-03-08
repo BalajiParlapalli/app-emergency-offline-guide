@@ -11,6 +11,23 @@ type TorchState = {
   releaseTorch: () => void;
 };
 
+/**
+ * Dynamically import @capgo/capacitor-flash.
+ * Returns null when running in a plain browser (no Capacitor native shell).
+ */
+async function getFlashPlugin() {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const mod = await import("@capgo/capacitor-flash");
+    const Flash = mod.CapacitorFlash ?? (mod.default as any)?.CapacitorFlash ?? mod.default;
+    if (!Flash?.isAvailable) return null;
+    const { value: available } = await Flash.isAvailable();
+    return available ? Flash : null;
+  } catch {
+    return null;
+  }
+}
+
 export function useTorch(): TorchState {
   const [torchOn, setTorchOn] = useState(false);
   const [usingScreen, setUsingScreen] = useState(false);
@@ -19,6 +36,8 @@ export function useTorch(): TorchState {
 
   const streamRef = useRef<MediaStream | null>(null);
   const trackRef = useRef<MediaStreamTrack | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const flashPluginRef = useRef<any | null | undefined>(undefined); // undefined = not checked yet
 
   const stopCamera = useCallback(() => {
     if (trackRef.current) {
@@ -31,21 +50,40 @@ export function useTorch(): TorchState {
     }
   }, []);
 
-  const getDebugInfo = useCallback(() => {
-    const supported = (navigator.mediaDevices?.getSupportedConstraints?.() ?? {}) as MediaTrackSupportedConstraints & {
-      torch?: boolean;
-    };
-    return {
-      userAgent: navigator.userAgent,
-      secureContext: window.isSecureContext,
-      torchConstraintSupported: Boolean(supported.torch),
-    };
+  // ---------- Native Capacitor path ----------
+
+  const enableTorchNative = useCallback(async () => {
+    const Flash = flashPluginRef.current;
+    if (!Flash) return false;
+    try {
+      await Flash.switchOn({ intensity: 1 });
+      setSupportsTorch(true);
+      setTorchError(null);
+      setUsingScreen(false);
+      setTorchOn(true);
+      return true;
+    } catch (err: any) {
+      console.warn("[torch-native] switchOn failed", err);
+      return false;
+    }
   }, []);
 
-  const enableTorch = useCallback(async () => {
-    const debug = getDebugInfo();
-    console.info("[torch] enable attempt", debug);
+  const disableTorchNative = useCallback(async () => {
+    const Flash = flashPluginRef.current;
+    if (!Flash) return false;
+    try {
+      await Flash.switchOff();
+      setTorchOn(false);
+      setUsingScreen(false);
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
 
+  // ---------- WebRTC browser path ----------
+
+  const enableTorchBrowser = useCallback(async () => {
     if (!navigator.mediaDevices?.getUserMedia) {
       setTorchError("Camera API not available in this browser.");
       setUsingScreen(true);
@@ -53,8 +91,6 @@ export function useTorch(): TorchState {
       return;
     }
 
-    // Strategy 1: Open environment camera and then enable torch via applyConstraints.
-    // (Most reliable for Android Chrome)
     try {
       stopCamera();
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -70,18 +106,12 @@ export function useTorch(): TorchState {
       streamRef.current = stream;
       trackRef.current = track;
 
-      // Let capabilities settle on some devices
       await new Promise((r) => setTimeout(r, 200));
 
       const caps = (track.getCapabilities?.() ?? {}) as MediaTrackCapabilities & { torch?: boolean };
-      const settings = (track.getSettings?.() ?? {}) as MediaTrackSettings & { torch?: boolean };
-      console.info("[torch] caps/settings", { caps, settings });
 
       if (caps.torch) {
         await track.applyConstraints({ advanced: [{ torch: true } as MediaTrackConstraintSet] });
-        const nextSettings = (track.getSettings?.() ?? {}) as MediaTrackSettings & { torch?: boolean };
-        console.info("[torch] enabled", { nextSettings });
-
         setSupportsTorch(true);
         setTorchError(null);
         setUsingScreen(false);
@@ -89,15 +119,13 @@ export function useTorch(): TorchState {
         return;
       }
 
-      // Torch key missing = browser/device does not expose torch in WebRTC
       stopCamera();
       setSupportsTorch(false);
       setTorchError(
-        `Browser/device does not expose camera torch (caps.torch missing). UA: ${navigator.userAgent}`
+        "Hardware torch not available in this browser. Install the native app for real flashlight control, or tap to use screen light."
       );
     } catch (err: any) {
       const msg = err?.name || err?.message || String(err);
-      console.warn("[torch] enable failed", msg);
       if (msg.includes("NotAllowed") || msg.includes("Permission")) {
         setTorchError("Camera permission denied. Allow camera access and retry.");
       } else {
@@ -109,9 +137,9 @@ export function useTorch(): TorchState {
     // Fallback: screen light
     setUsingScreen(true);
     setTorchOn(true);
-  }, [getDebugInfo, stopCamera]);
+  }, [stopCamera]);
 
-  const disableTorch = useCallback(async () => {
+  const disableTorchBrowser = useCallback(async () => {
     if (trackRef.current) {
       try {
         await trackRef.current.applyConstraints({ advanced: [{ torch: false } as MediaTrackConstraintSet] });
@@ -122,6 +150,30 @@ export function useTorch(): TorchState {
     setTorchOn(false);
     setUsingScreen(false);
   }, []);
+
+  // ---------- Unified API ----------
+
+  const enableTorch = useCallback(async () => {
+    // Lazy-init native plugin check
+    if (flashPluginRef.current === undefined) {
+      flashPluginRef.current = await getFlashPlugin();
+    }
+    // Try native first
+    if (flashPluginRef.current) {
+      const ok = await enableTorchNative();
+      if (ok) return;
+    }
+    // Fall back to browser
+    await enableTorchBrowser();
+  }, [enableTorchNative, enableTorchBrowser]);
+
+  const disableTorch = useCallback(async () => {
+    if (flashPluginRef.current) {
+      const ok = await disableTorchNative();
+      if (ok) return;
+    }
+    await disableTorchBrowser();
+  }, [disableTorchNative, disableTorchBrowser]);
 
   const toggleTorch = useCallback(async () => {
     if (torchOn) {
