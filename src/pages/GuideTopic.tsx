@@ -68,7 +68,7 @@ const GuideTopic = () => {
   const nextTopic = currentIdx < guideTopics.length - 1 ? guideTopics[currentIdx + 1] : null;
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label={`${topic.title} guide topic`}>
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label={`${topic.title} guide topic`}>
       <BackLink to="/guide" label="Guide" />
       <h1 className="text-3xl font-bold text-primary mb-6">
         {topic.emoji} {topic.title}
