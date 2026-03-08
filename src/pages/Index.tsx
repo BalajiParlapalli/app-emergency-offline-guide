@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { BookOpen, ClipboardList, Radio, Braces, Siren } from "lucide-react";
+import { BookOpen, ClipboardList, Radio, Braces, Siren, Backpack } from "lucide-react";
 
 const sections = [
+  { to: "/edc", icon: Backpack, label: "EDC Kit", desc: "What to pack for survival" },
   { to: "/guide", icon: BookOpen, label: "Survival Guide", desc: "Water, food, shelter, first aid & fire" },
   { to: "/checklist", icon: ClipboardList, label: "Checklist", desc: "Track your supplies & gear" },
   { to: "/morse", icon: Radio, label: "Morse Code", desc: "Encode & decode messages" },

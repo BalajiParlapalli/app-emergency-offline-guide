@@ -22,6 +22,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/edc" element={<EDCKit />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/checklist" element={<Checklist />} />
           <Route path="/morse" element={<MorseCode />} />
