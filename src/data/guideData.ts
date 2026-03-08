@@ -126,7 +126,7 @@ export const guideTopics: GuideTopic[] = [
         points: [
           "V = Need assistance",
           "X = Need medical help",
-          "I = Need supplies",
+          "II = Need supplies",
           "→ (Arrow) = Traveling in this direction",
           "F = Need food and water",
           "Make signals at least 3 meters tall using rocks, logs, or clothing on open ground",
