@@ -1524,7 +1524,7 @@ export const guideTopics: GuideTopic[] = [
       {
         heading: "Nuclear Threat Basics",
         points: [
-          "India has 22 operational nuclear reactors — accidents, though rare, require preparedness",
+          "India has 24 operational nuclear reactors (as of 2025) — accidents, though rare, require preparedness",
           "Nuclear emergencies: reactor accidents, dirty bombs, nuclear weapon detonation",
           "Radiation is invisible, odorless, and tasteless — you cannot detect it without instruments",
           "Three types of radiation exposure: external, inhalation, ingestion",
