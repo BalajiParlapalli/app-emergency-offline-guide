@@ -65,7 +65,7 @@ const GuideTopic = () => {
 
   return (
     <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label={`${topic.title} guide topic`}>
-      <BackLink to="/guide" label="← Guide" />
+      <BackLink to="/guide" label="Guide" />
       <h1 className="text-3xl font-bold text-primary mb-6">
         {topic.emoji} {topic.title}
       </h1>

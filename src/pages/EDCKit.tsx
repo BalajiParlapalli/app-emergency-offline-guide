@@ -180,7 +180,7 @@ const EDCKit = () => {
         {categories.map((cat, ci) => {
           const catChecked = cat.items.filter(i => i.checked).length;
           return (
-            <details key={ci} className="border border-border rounded-lg group" open={ci === 0}>
+            <details key={ci} className="border border-border rounded-lg group">
               <summary className="px-4 py-3 font-semibold text-lg cursor-pointer hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
                 <span>{cat.emoji} {cat.title}</span>
                 <span className="text-sm text-muted-foreground mono">{catChecked}/{cat.items.length}</span>
