@@ -19,7 +19,7 @@ async function getFlashPlugin() {
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mod = await import("@capgo/capacitor-flash");
-    const Flash = mod.Flash ?? mod.default;
+    const Flash = mod.CapacitorFlash ?? (mod.default as any)?.CapacitorFlash ?? mod.default;
     if (!Flash?.isAvailable) return null;
     const { value: available } = await Flash.isAvailable();
     return available ? Flash : null;
