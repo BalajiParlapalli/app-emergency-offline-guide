@@ -70,7 +70,7 @@ const MorseCode = () => {
     setFlashing(false);
   }, [enableTorch, disableTorch]);
 
-  const stopFlash = () => { abortRef.current = true; setFlashOn(false); setFlashing(false); };
+  const stopFlash = () => { abortRef.current = true; disableTorch(); setFlashing(false); };
 
   return (
     <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="Morse Code Tool">
