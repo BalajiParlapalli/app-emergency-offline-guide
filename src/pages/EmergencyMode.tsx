@@ -145,6 +145,11 @@ const EmergencyMode = () => {
       </div>
 
       {/* Quick tools */}
+      {flashError && (
+        <div className="mb-4 border border-destructive/30 bg-destructive/10 rounded-lg p-3 text-xs text-destructive">
+          ⚠️ Torch: {flashError} — Using screen light as fallback.
+        </div>
+      )}
       <h2 className="text-lg font-semibold mb-3">Quick Tools</h2>
       <div className="grid grid-cols-2 gap-2 mb-6">
         <button
