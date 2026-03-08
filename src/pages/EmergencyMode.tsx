@@ -183,8 +183,9 @@ const EmergencyMode = () => {
         <Link
           to="/guide/first-aid"
           className="flex flex-col items-center gap-2 border border-border rounded-lg p-4 hover:border-primary/50 transition-colors bg-card"
+          aria-label="Open First Aid Guide"
         >
-          <Heart className="h-8 w-8 text-primary" />
+          <Heart className="h-8 w-8 text-primary" aria-hidden="true" />
           <span className="text-sm font-semibold">First Aid Guide</span>
         </Link>
       </div>
