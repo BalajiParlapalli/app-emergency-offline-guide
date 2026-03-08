@@ -21,8 +21,6 @@ const survivalPhrases = [
   { text: "MEDICINE", morse: "−− · −·· ·· −·−· ·· −· ·", meaning: "Need medical supplies" },
 ];
 
-const textToMorse = (text: string) =>
-  text.toUpperCase().split("").map(c => morseMap[c] || "").join(" ");
 
 const DOT_MS = 200;
 const DASH_MS = 600;
