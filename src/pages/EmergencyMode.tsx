@@ -180,7 +180,7 @@ const EmergencyMode = () => {
         </button>
 
         <Link
-          to="/guide/first-aid-medical"
+          to="/guide/first-aid"
           className="flex flex-col items-center gap-2 border border-border rounded-lg p-4 hover:border-primary/50 transition-colors bg-card"
         >
           <Heart className="h-8 w-8 text-primary" />

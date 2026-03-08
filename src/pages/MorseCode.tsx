@@ -83,6 +83,7 @@ const MorseCode = () => {
           onChange={e => setInput(e.target.value)}
           placeholder="Type text to encode..."
           className="w-full bg-secondary border border-border rounded-md px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary mb-2"
+          aria-label="Text to encode as Morse code"
         />
         {input && (
           <div className="bg-card border border-primary/30 rounded-md p-3 mono text-primary text-lg tracking-widest break-all mb-2">

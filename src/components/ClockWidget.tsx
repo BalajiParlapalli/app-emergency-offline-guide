@@ -20,8 +20,12 @@ const ClockWidget = () => {
   // Check alarm
   useEffect(() => {
     if (!alarmActive || !alarmTime) return;
-    const hhmm = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-    if (hhmm === alarmTime && now.getSeconds() === 0) {
+    // Compare alarm time against IST, not local time
+    const istOff = 5.5 * 60 * 60 * 1000;
+    const utcNow = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
+    const istNow = new Date(utcNow + istOff);
+    const hhmm = `${String(istNow.getHours()).padStart(2, "0")}:${String(istNow.getMinutes()).padStart(2, "0")}`;
+    if (hhmm === alarmTime && istNow.getSeconds() === 0) {
       setAlarmRinging(true);
       startAlarmSound();
     }
