@@ -57,9 +57,9 @@ const MorseCode = () => {
     for (const char of morse) {
       if (abortRef.current) break;
       if (char === "·") {
-        enableTorch(); await sleep(DOT_MS); disableTorch(); await sleep(GAP_MS);
+        await enableTorch(); await sleep(DOT_MS); await disableTorch(); await sleep(GAP_MS);
       } else if (char === "−") {
-        enableTorch(); await sleep(DASH_MS); disableTorch(); await sleep(GAP_MS);
+        await enableTorch(); await sleep(DASH_MS); await disableTorch(); await sleep(GAP_MS);
       } else if (char === "/") {
         await sleep(WORD_GAP_MS);
       } else if (char === " ") {
