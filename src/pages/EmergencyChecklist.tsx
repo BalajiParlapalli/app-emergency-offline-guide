@@ -22,7 +22,7 @@ const EmergencyChecklist = () => {
   const done = checked.filter(Boolean).length;
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="3-Minute Emergency Checklist">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="3-Minute Emergency Checklist">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">⚡ 3-Minute Emergency Checklist</h1>
       <p className="text-sm text-muted-foreground mb-4">When disaster strikes, follow these steps in order</p>
