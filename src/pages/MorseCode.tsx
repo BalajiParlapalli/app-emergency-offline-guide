@@ -57,18 +57,18 @@ const MorseCode = () => {
     for (const char of morse) {
       if (abortRef.current) break;
       if (char === "·") {
-        setFlashOn(true); await sleep(DOT_MS); setFlashOn(false); await sleep(GAP_MS);
+        enableTorch(); await sleep(DOT_MS); disableTorch(); await sleep(GAP_MS);
       } else if (char === "−") {
-        setFlashOn(true); await sleep(DASH_MS); setFlashOn(false); await sleep(GAP_MS);
+        enableTorch(); await sleep(DASH_MS); disableTorch(); await sleep(GAP_MS);
       } else if (char === "/") {
         await sleep(WORD_GAP_MS);
       } else if (char === " ") {
         await sleep(CHAR_GAP_MS);
       }
     }
-    setFlashOn(false);
+    disableTorch();
     setFlashing(false);
-  }, []);
+  }, [enableTorch, disableTorch]);
 
   const stopFlash = () => { abortRef.current = true; setFlashOn(false); setFlashing(false); };
 
