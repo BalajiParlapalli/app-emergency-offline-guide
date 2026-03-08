@@ -69,7 +69,7 @@ const MorseCode = () => {
     await disableTorch();
     releaseTorch();
     setFlashing(false);
-  }, [enableTorch, disableTorch]);
+  }, [enableTorch, disableTorch, releaseTorch]);
 
   const stopFlash = () => { abortRef.current = true; disableTorch(); releaseTorch(); setFlashing(false); };
 

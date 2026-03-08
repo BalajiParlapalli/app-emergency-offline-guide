@@ -19,7 +19,7 @@ const BottomNav = () => {
     >
       <div className="flex items-center justify-around max-w-lg mx-auto">
         {navItems.map(({ to, icon: Icon, label }) => {
-          const active = pathname === to || (to !== "/" && pathname.startsWith(to));
+          const active = pathname === to || (to !== "/" && to !== "/emergency" && pathname.startsWith(to)) || (to === "/emergency" && pathname === "/emergency");
           return (
             <Link
               key={to}
