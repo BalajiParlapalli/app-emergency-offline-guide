@@ -35,6 +35,41 @@ const commands: Record<string, string> = {
 const normalize = (text: string) =>
   text.toLowerCase().replace(/[^a-z0-9\s]/g, "").replace(/\s+/g, " ").trim();
 
+// Extract words from transcript and try to match commands using word boundaries
+const findCommand = (transcript: string): string | null => {
+  const normalized = normalize(transcript);
+  const words = normalized.split(" ");
+
+  // Sort commands by key length (longest first) for best matching
+  const sorted = Object.entries(commands).sort((a, b) => b[0].length - a[0].length);
+
+  for (const [key] of sorted) {
+    const keyWords = key.split(" ");
+
+    // Multi-word command: check if all key words appear in order in the transcript
+    if (keyWords.length > 1) {
+      let searchFrom = 0;
+      let allFound = true;
+      for (const kw of keyWords) {
+        const idx = words.indexOf(kw, searchFrom);
+        if (idx === -1) { allFound = false; break; }
+        searchFrom = idx + 1;
+      }
+      if (allFound) return key;
+    } else {
+      // Single word: check if the word exists anywhere in transcript words
+      if (words.includes(key)) return key;
+    }
+  }
+
+  // Fallback: substring match for compound words (e.g., "opencompass")
+  for (const [key] of sorted) {
+    if (normalized.includes(key)) return key;
+  }
+
+  return null;
+};
+
 const VoiceCommand = () => {
   const [listening, setListening] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -57,30 +92,27 @@ const VoiceCommand = () => {
     recognition.lang = "en-IN";
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.maxAlternatives = 3;
+    recognition.maxAlternatives = 5;
 
     recognition.onresult = (event: any) => {
-      // Check all alternatives for best match
       let matched = false;
-      for (let a = 0; a < event.results[0].length && !matched; a++) {
-        const transcript = normalize(event.results[0][a].transcript);
-        setFeedback(`Heard: "${event.results[0][0].transcript}"`);
 
-        // Sort commands by key length (longest first) for best matching
-        const sorted = Object.entries(commands).sort((a, b) => b[0].length - a[0].length);
-        for (const [key, route] of sorted) {
-          if (transcript.includes(key) || transcript === key) {
-            navigate(route);
-            setFeedback(`Going to: ${key}`);
-            matched = true;
-            break;
-          }
+      // Check all alternatives
+      for (let a = 0; a < event.results[0].length && !matched; a++) {
+        const transcript = event.results[0][a].transcript;
+        const key = findCommand(transcript);
+
+        if (key) {
+          const route = commands[key];
+          navigate(route);
+          setFeedback(`Heard: "${event.results[0][0].transcript}" → Going to ${key}`);
+          matched = true;
         }
       }
 
       if (!matched) {
         const heard = event.results[0][0].transcript;
-        setFeedback(`"${heard}" — not recognized. Try: Emergency, Guide, SOS, Compass, Notebook`);
+        setFeedback(`"${heard}" — not recognized. Try saying: Emergency, Guide, SOS, Compass, Notebook`);
       }
 
       setTimeout(() => setFeedback(null), 4000);
@@ -104,7 +136,7 @@ const VoiceCommand = () => {
     recognitionRef.current = recognition;
     recognition.start();
     setListening(true);
-    setFeedback("🎤 Listening... say a command");
+    setFeedback("🎤 Listening... say a command like 'open compass' or 'go to emergency'");
   }, [navigate]);
 
   const stopListening = useCallback(() => {

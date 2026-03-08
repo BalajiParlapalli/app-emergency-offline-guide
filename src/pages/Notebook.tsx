@@ -5,6 +5,19 @@ import { getBookmarks, toggleBookmark, BookmarkItem } from "@/pages/GuideTopic";
 import { BookmarkCheck, Trash2, Plus, StickyNote, X } from "lucide-react";
 
 const NOTES_KEY = "survival-notebook-notes";
+const USER_ID_KEY = "survival-user-id";
+
+// Generate or retrieve a unique user ID for this browser
+const getUserId = (): string => {
+  let id = localStorage.getItem(USER_ID_KEY);
+  if (!id) {
+    id = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    localStorage.setItem(USER_ID_KEY, id);
+  }
+  return id;
+};
+
+const getNotesKey = () => `${NOTES_KEY}-${getUserId()}`;
 
 interface Note {
   id: string;
@@ -13,12 +26,12 @@ interface Note {
 }
 
 const getNotes = (): Note[] => {
-  const stored = localStorage.getItem(NOTES_KEY);
+  const stored = localStorage.getItem(getNotesKey());
   return stored ? JSON.parse(stored) : [];
 };
 
 const saveNotes = (notes: Note[]) => {
-  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+  localStorage.setItem(getNotesKey(), JSON.stringify(notes));
 };
 
 const Notebook = () => {
