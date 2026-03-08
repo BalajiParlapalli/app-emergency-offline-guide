@@ -17,7 +17,7 @@ const sections = [
 const features = [
   { icon: WifiOff, label: "100% Offline", desc: "Works without internet — install as app" },
   { icon: Shield, label: "Verified Data", desc: "Data verified with Indian Websites" },
-  { icon: Accessibility, label: "Accessible", desc: "Voice commands, screen readers, POUR" },
+  { icon: Accessibility, label: "Accessible", desc: "Voice commands, screen readers" },
   { icon: Hand, label: "One-Hand Use", desc: "Bottom navigation, large touch targets" },
 ];
 
