@@ -37,7 +37,7 @@ const Guide = () => {
   }, [query]);
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="Survival Guide">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="Survival Guide">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">📖 Survival Guide</h1>
       <div className="flex items-center justify-between mb-4">
