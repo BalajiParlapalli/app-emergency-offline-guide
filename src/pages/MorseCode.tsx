@@ -115,8 +115,9 @@ const MorseCode = () => {
               <span className="font-semibold">{text}</span>
               <button
                 onClick={() => flashMorse(text)}
-                className="text-xs text-primary hover:text-primary/80 mono"
+                className="touch-target text-xs text-primary hover:text-primary/80 mono px-2 py-1"
                 disabled={flashing}
+                aria-label={`Flash ${text} as Morse code`}
               >
                 🔦 Flash
               </button>
