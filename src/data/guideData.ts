@@ -244,7 +244,7 @@ export const guideTopics: GuideTopic[] = [
           "Do NOT apply turmeric, chilli powder, or any traditional remedies",
           "Visit the nearest hospital for anti-rabies vaccine (ARV) within 24 hours",
           "India has the highest rabies deaths globally — NEVER skip the vaccine",
-          "Full course: 5 doses on days 0, 3, 7, 14, and 28",
+          "Full course: 4 doses on days 0, 3, 7, and 14 (updated WHO/India protocol)",
           "If the bite is deep or on face/neck, rabies immunoglobulin (RIG) is also needed",
           "Try to note the dog's appearance for identification — do NOT try to catch it",
         ],
