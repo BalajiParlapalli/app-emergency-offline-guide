@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import BackLink from "@/components/BackLink";
+import { useTorch } from "@/hooks/use-torch";
 
 const morseMap: Record<string, string> = {
   A: "·−", B: "−···", C: "−·−·", D: "−··", E: "·", F: "··−·",
@@ -44,7 +45,7 @@ const WORD_GAP_MS = 1400;
 const MorseCode = () => {
   const [input, setInput] = useState("");
   const [flashing, setFlashing] = useState(false);
-  const [flashOn, setFlashOn] = useState(false);
+  const { torchOn: flashOn, usingScreen, enableTorch, disableTorch } = useTorch();
   const abortRef = useRef(false);
 
   const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
@@ -56,20 +57,20 @@ const MorseCode = () => {
     for (const char of morse) {
       if (abortRef.current) break;
       if (char === "·") {
-        setFlashOn(true); await sleep(DOT_MS); setFlashOn(false); await sleep(GAP_MS);
+        enableTorch(); await sleep(DOT_MS); disableTorch(); await sleep(GAP_MS);
       } else if (char === "−") {
-        setFlashOn(true); await sleep(DASH_MS); setFlashOn(false); await sleep(GAP_MS);
+        enableTorch(); await sleep(DASH_MS); disableTorch(); await sleep(GAP_MS);
       } else if (char === "/") {
         await sleep(WORD_GAP_MS);
       } else if (char === " ") {
         await sleep(CHAR_GAP_MS);
       }
     }
-    setFlashOn(false);
+    disableTorch();
     setFlashing(false);
-  }, []);
+  }, [enableTorch, disableTorch]);
 
-  const stopFlash = () => { abortRef.current = true; setFlashOn(false); setFlashing(false); };
+  const stopFlash = () => { abortRef.current = true; disableTorch(); setFlashing(false); };
 
   return (
     <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="Morse Code Tool">
@@ -103,8 +104,8 @@ const MorseCode = () => {
         )}
       </div>
 
-      {/* Flashlight screen */}
-      {flashOn && (
+      {/* Flashlight screen (only when using screen fallback) */}
+      {flashOn && usingScreen && (
         <div className="fixed inset-0 z-50 bg-white" role="status" aria-label="Morse code flashing" onClick={stopFlash} />
       )}
 

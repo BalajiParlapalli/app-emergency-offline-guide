@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import BackLink from "@/components/BackLink";
 import { Phone, Heart, Flashlight, Radio, MapPin, Volume2, VolumeX } from "lucide-react";
+import { useTorch } from "@/hooks/use-torch";
 
 const emergencyNumbers = [
   { label: "National Emergency", number: "112", note: "Works without SIM" },
@@ -19,7 +20,7 @@ const EmergencyMode = () => {
   const [locError, setLocError] = useState<string | null>(null);
   const [sosActive, setSosActive] = useState(false);
   const [sosFlash, setSosFlash] = useState(false);
-  const [flashlightOn, setFlashlightOn] = useState(false);
+  const { torchOn: flashlightOn, usingScreen: flashUsingScreen, toggleTorch: toggleFlashlight } = useTorch();
   const [alarmOn, setAlarmOn] = useState(false);
   const audioRef = useRef<AudioContext | null>(null);
   const oscRef = useRef<OscillatorNode | null>(null);
@@ -37,9 +38,6 @@ const EmergencyMode = () => {
       setLocError("Geolocation not supported.");
     }
   }, []);
-
-  // Flashlight toggle (white screen)
-  const toggleFlashlight = () => setFlashlightOn(f => !f);
 
   // Alarm
   const toggleAlarm = useCallback(() => {
@@ -118,8 +116,8 @@ const EmergencyMode = () => {
     <main className="min-h-screen px-4 py-6 max-w-lg mx-auto pb-24" aria-label="Emergency Mode">
       {/* SOS flash overlay */}
       {sosFlash && <div className="fixed inset-0 z-50 bg-white" role="alert" aria-label="SOS signal flashing" onClick={stopSOS} />}
-      {/* Flashlight overlay */}
-      {flashlightOn && <div className="fixed inset-0 z-50 bg-white" role="status" aria-label="Flashlight on — tap to turn off" onClick={toggleFlashlight} />}
+      {/* Flashlight overlay (only when using screen fallback) */}
+      {flashlightOn && flashUsingScreen && <div className="fixed inset-0 z-50 bg-white" role="status" aria-label="Flashlight on — tap to turn off" onClick={toggleFlashlight} />}
 
       <BackLink />
       <div className="text-center mb-6">
