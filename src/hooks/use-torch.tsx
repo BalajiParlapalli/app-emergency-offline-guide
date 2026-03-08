@@ -32,11 +32,13 @@ export function useTorch(): TorchState {
   }, []);
 
   const getDebugInfo = useCallback(() => {
-    const supported = navigator.mediaDevices?.getSupportedConstraints?.();
+    const supported = (navigator.mediaDevices?.getSupportedConstraints?.() ?? {}) as MediaTrackSupportedConstraints & {
+      torch?: boolean;
+    };
     return {
       userAgent: navigator.userAgent,
       secureContext: window.isSecureContext,
-      torchConstraintSupported: Boolean(supported?.torch),
+      torchConstraintSupported: Boolean(supported.torch),
     };
   }, []);
 
