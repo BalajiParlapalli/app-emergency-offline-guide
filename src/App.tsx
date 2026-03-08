@@ -1,13 +1,13 @@
 import { lazy, Suspense } from "react";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import BottomNav from "./components/BottomNav";
 import ScrollToTop from "./components/ScrollToTop";
 
+const BottomNav = lazy(() => import("./components/BottomNav"));
 const VoiceCommand = lazy(() => import("./components/VoiceCommand"));
+const Toaster = lazy(() => import("./components/ui/toaster").then(m => ({ default: m.Toaster })));
+const Sonner = lazy(() => import("./components/ui/sonner").then(m => ({ default: m.Toaster })));
 
 const Guide = lazy(() => import("./pages/Guide"));
 const GuideTopic = lazy(() => import("./pages/GuideTopic"));
@@ -23,8 +23,10 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const App = () => (
   <TooltipProvider>
-    <Toaster />
-    <Sonner />
+    <Suspense fallback={null}>
+      <Toaster />
+      <Sonner />
+    </Suspense>
     <BrowserRouter>
       <ScrollToTop />
       <Suspense fallback={null}>
@@ -43,9 +45,9 @@ const App = () => (
           <Route path="/notebook" element={<Notebook />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <BottomNav />
+        <VoiceCommand />
       </Suspense>
-      <BottomNav />
-      <VoiceCommand />
     </BrowserRouter>
   </TooltipProvider>
 );
