@@ -22,14 +22,14 @@ const EmergencyChecklist = () => {
   const done = checked.filter(Boolean).length;
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="3-Minute Emergency Checklist">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="3-Minute Emergency Checklist">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">⚡ 3-Minute Emergency Checklist</h1>
       <p className="text-sm text-muted-foreground mb-4">When disaster strikes, follow these steps in order</p>
 
       {/* Progress */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="flex-1 h-2 rounded-full bg-secondary overflow-hidden">
+        <div className="flex-1 h-2 rounded-full bg-secondary overflow-hidden" role="progressbar" aria-valuenow={done} aria-valuemin={0} aria-valuemax={steps.length} aria-label={`${done} of ${steps.length} steps completed`}>
           <div
             className="h-full bg-primary transition-all duration-500 rounded-full"
             style={{ width: `${(done / steps.length) * 100}%` }}
@@ -77,7 +77,7 @@ const EmergencyChecklist = () => {
           <p className="text-sm text-muted-foreground mt-1">Stay where you are if safe. Help others. Wait for rescue.</p>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

@@ -77,7 +77,7 @@ const Compass = () => {
   const manualHeading = manualDeg ? parseInt(manualDeg, 10) : null;
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto flex flex-col items-center pb-24" role="main" aria-label="Digital Compass">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto flex flex-col items-center pb-24" aria-label="Digital Compass">
       <div className="self-start w-full"><BackLink /></div>
       <h1 className="text-3xl font-bold text-primary mb-6">🧭 Compass</h1>
 
@@ -164,7 +164,7 @@ const Compass = () => {
           <li>• Without compass: sun rises in East, sets in West. At noon, shadow points North in India.</li>
         </ul>
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -172,7 +172,7 @@ const EDCKit = () => {
   };
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="EDC Survival Kit">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="EDC Survival Kit">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">🎒 EDC Survival Kit</h1>
       <div className="flex items-center justify-between mb-6">
@@ -209,7 +209,7 @@ const EDCKit = () => {
           );
         })}
       </div>
-    </div>
+    </main>
   );
 };
 

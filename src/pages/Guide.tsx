@@ -37,19 +37,19 @@ const Guide = () => {
   }, [query]);
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="Survival Guide">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="Survival Guide">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">📖 Survival Guide</h1>
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-muted-foreground">{guideTopics.length} topics — India focused</p>
-        <Link to="/guide/bookmarks" className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors">
-          <Bookmark className="h-4 w-4" /> Saved
+        <Link to="/guide/bookmarks" className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors" aria-label="View saved bookmarks">
+          <Bookmark className="h-4 w-4" aria-hidden="true" /> Saved
         </Link>
       </div>
 
       {/* Search */}
       <div className="relative mb-6">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
         <input
           value={query}
           onChange={e => setQuery(e.target.value)}
@@ -110,7 +110,7 @@ const Guide = () => {
           ))}
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

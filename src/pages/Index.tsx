@@ -78,7 +78,7 @@ const Index = () => {
       </section>
 
       {/* Tools grid */}
-      <main id="main-tools" className="w-full max-w-lg" role="main">
+      <main id="main-tools" className="w-full max-w-lg">
         <h2 className="text-lg font-semibold mb-3">All Tools</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {sections.map(({ to, icon: Icon, label, pictogram, desc }) => (

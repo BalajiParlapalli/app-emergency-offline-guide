@@ -91,7 +91,7 @@ const sections = [
 
 const SOS = () => {
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="SOS and Emergency Signals">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="SOS and Emergency Signals">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">🚨 SOS & Emergency Signals</h1>
       <p className="text-sm text-muted-foreground mb-6">India-specific · NDMA / NDRF / NIDM verified</p>
@@ -130,7 +130,7 @@ const SOS = () => {
           📋 Sources: NDMA (ndma.gov.in), NDRF (ndrf.gov.in), NIDM (nidm.gov.in), MoHFW (mohfw.gov.in), Indian Red Cross Society (indianredcross.org), Civil Defence India. Numbers verified as of 2024.
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 

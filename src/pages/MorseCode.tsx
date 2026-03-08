@@ -72,7 +72,7 @@ const MorseCode = () => {
   const stopFlash = () => { abortRef.current = true; setFlashOn(false); setFlashing(false); };
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="Morse Code Tool">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="Morse Code Tool">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-6">📡 Morse Code</h1>
 
@@ -105,7 +105,7 @@ const MorseCode = () => {
 
       {/* Flashlight screen */}
       {flashOn && (
-        <div className="fixed inset-0 z-50 bg-white" onClick={stopFlash} />
+        <div className="fixed inset-0 z-50 bg-white" role="status" aria-label="Morse code flashing" onClick={stopFlash} />
       )}
 
       {/* Survival phrases */}
@@ -140,7 +140,7 @@ const MorseCode = () => {
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 };
 

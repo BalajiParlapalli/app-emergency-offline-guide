@@ -29,7 +29,7 @@ const survivalPhrases = [
 
 const Braille = () => {
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="Braille Reference">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="Braille Reference">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">⠃ Braille Reference</h1>
       <p className="text-sm text-muted-foreground mb-6">Tap communication when silence is survival</p>
@@ -75,7 +75,7 @@ const Braille = () => {
           Feel or mark dots on any surface — paper, wood, clay — to leave messages others can read by touch in darkness.
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 

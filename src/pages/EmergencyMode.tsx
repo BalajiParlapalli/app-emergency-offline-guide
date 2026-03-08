@@ -115,11 +115,11 @@ const EmergencyMode = () => {
   }, []);
 
   return (
-    <div className="min-h-screen px-4 py-6 max-w-lg mx-auto pb-24" role="main" aria-label="Emergency Mode">
+    <main className="min-h-screen px-4 py-6 max-w-lg mx-auto pb-24" aria-label="Emergency Mode">
       {/* SOS flash overlay */}
-      {sosFlash && <div className="fixed inset-0 z-50 bg-white" onClick={stopSOS} />}
+      {sosFlash && <div className="fixed inset-0 z-50 bg-white" role="alert" aria-label="SOS signal flashing" onClick={stopSOS} />}
       {/* Flashlight overlay */}
-      {flashlightOn && <div className="fixed inset-0 z-50 bg-white" onClick={toggleFlashlight} />}
+      {flashlightOn && <div className="fixed inset-0 z-50 bg-white" role="status" aria-label="Flashlight on — tap to turn off" onClick={toggleFlashlight} />}
 
       <BackLink />
       <div className="text-center mb-6">
@@ -134,8 +134,9 @@ const EmergencyMode = () => {
             key={number}
             href={`tel:${number}`}
             className="flex items-center gap-3 border-2 border-destructive/50 rounded-lg p-3 bg-destructive/10 hover:bg-destructive/20 transition-colors active:scale-95"
+            aria-label={`Call ${label}: ${number}`}
           >
-            <Phone className="h-5 w-5 text-destructive shrink-0" />
+            <Phone className="h-5 w-5 text-destructive shrink-0" aria-hidden="true" />
             <div>
               <p className="font-bold text-lg leading-tight mono">{number}</p>
               <p className="text-xs text-muted-foreground leading-tight">{label}</p>
@@ -182,8 +183,9 @@ const EmergencyMode = () => {
         <Link
           to="/guide/first-aid"
           className="flex flex-col items-center gap-2 border border-border rounded-lg p-4 hover:border-primary/50 transition-colors bg-card"
+          aria-label="Open First Aid Guide"
         >
-          <Heart className="h-8 w-8 text-primary" />
+          <Heart className="h-8 w-8 text-primary" aria-hidden="true" />
           <span className="text-sm font-semibold">First Aid Guide</span>
         </Link>
       </div>
@@ -191,7 +193,7 @@ const EmergencyMode = () => {
       {/* Location */}
       <div className="border border-border rounded-lg p-4 mb-6">
         <div className="flex items-center gap-2 mb-2">
-          <MapPin className="h-5 w-5 text-primary" />
+          <MapPin className="h-5 w-5 text-primary" aria-hidden="true" />
           <h3 className="font-semibold">📍 Your Location</h3>
         </div>
         {location ? (
@@ -236,7 +238,7 @@ const EmergencyMode = () => {
           📋 Numbers verified via NDMA, MoHFW, Indian Red Cross Society, Civil Defence India (2024)
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 
