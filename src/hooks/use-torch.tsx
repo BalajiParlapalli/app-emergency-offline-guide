@@ -11,11 +11,6 @@ type TorchState = {
   releaseTorch: () => void;
 };
 
-/**
- * Controls device camera torch when supported (Android Chrome).
- * Falls back to white-screen light if torch is unavailable.
- * Exposes torchError for debugging on mobile.
- */
 export function useTorch(): TorchState {
   const [torchOn, setTorchOn] = useState(false);
   const [usingScreen, setUsingScreen] = useState(false);
@@ -36,121 +31,137 @@ export function useTorch(): TorchState {
     }
   }, []);
 
-  const ensureTrack = useCallback(async (): Promise<MediaStreamTrack | null> => {
-    // Reuse existing track if alive
-    if (trackRef.current && trackRef.current.readyState === "live") {
-      return trackRef.current;
-    }
-
-    // Clean up dead track
-    stopCamera();
-
+  const enableTorch = useCallback(async () => {
     if (!navigator.mediaDevices?.getUserMedia) {
-      setTorchError("Camera API not available on this browser.");
-      return null;
+      setTorchError("Camera API not available.");
+      setUsingScreen(true);
+      setTorchOn(true);
+      return;
     }
 
+    // Strategy 1: Request torch directly in getUserMedia (works on most Android Chrome)
     try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: "environment",
+          // @ts-ignore — torch is a valid constraint on Android Chrome
+          torch: true,
+        } as any,
+      });
+      const track = stream.getVideoTracks()[0];
+      if (track) {
+        streamRef.current = stream;
+        trackRef.current = track;
+        setSupportsTorch(true);
+        setUsingScreen(false);
+        setTorchOn(true);
+        setTorchError(null);
+        return;
+      }
+      stream.getTracks().forEach((t) => t.stop());
+    } catch {
+      // Strategy 1 failed, try strategy 2
+    }
+
+    // Strategy 2: Open camera first, then apply torch via advanced constraints
+    try {
+      stopCamera();
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: { ideal: "environment" } },
       });
-      const track = stream.getVideoTracks()[0] ?? null;
-      if (!track) {
-        stream.getTracks().forEach((t) => t.stop());
-        setTorchError("No video track found from camera.");
-        return null;
-      }
+      const track = stream.getVideoTracks()[0];
+      if (track) {
+        streamRef.current = stream;
+        trackRef.current = track;
 
-      streamRef.current = stream;
-      trackRef.current = track;
+        // Small delay for capabilities to populate
+        await new Promise((r) => setTimeout(r, 300));
 
-      // Wait a moment for capabilities to populate on some devices
-      await new Promise((r) => setTimeout(r, 200));
+        // Try applyConstraints with torch
+        try {
+          await track.applyConstraints({ advanced: [{ torch: true } as any] });
+          setSupportsTorch(true);
+          setUsingScreen(false);
+          setTorchOn(true);
+          setTorchError(null);
+          return;
+        } catch {
+          // applyConstraints failed
+        }
 
-      const capabilities = track.getCapabilities?.() as any;
-      const hasTorch = Boolean(capabilities?.torch);
-      setSupportsTorch(hasTorch);
+        // Strategy 3: Try ImageCapture API
+        if ("ImageCapture" in window) {
+          try {
+            const imageCapture = new (window as any).ImageCapture(track);
+            const photoCapabilities = await imageCapture.getPhotoCapabilities?.();
+            if (photoCapabilities?.fillLightMode?.includes("flash")) {
+              // Device supports flash through ImageCapture
+              await track.applyConstraints({
+                advanced: [{ torch: true } as any],
+              });
+              setSupportsTorch(true);
+              setUsingScreen(false);
+              setTorchOn(true);
+              setTorchError(null);
+              return;
+            }
+          } catch {
+            // ImageCapture approach failed
+          }
+        }
 
-      if (!hasTorch) {
+        // All strategies failed — get capabilities for debug
+        const caps = track.getCapabilities?.() as any;
+        const capKeys = Object.keys(caps || {}).join(", ");
+        stopCamera();
         setTorchError(
-          `Camera opened but torch not supported. Capabilities: ${JSON.stringify(Object.keys(capabilities || {}))}`
+          `Torch not available via any method. Device capabilities: [${capKeys}]. Try Chrome browser (not in-app browser).`
         );
-      } else {
-        setTorchError(null);
       }
-
-      return track;
     } catch (err: any) {
       const msg = err?.name || err?.message || String(err);
       if (msg.includes("NotAllowed") || msg.includes("Permission")) {
-        setTorchError("Camera permission denied. Please allow camera access and try again.");
-      } else if (msg.includes("NotFound") || msg.includes("DevicesNotFound")) {
-        setTorchError("No camera found on this device.");
-      } else if (msg.includes("Overconstrained")) {
-        setTorchError("Camera constraints not satisfiable (no rear camera?).");
+        setTorchError("Camera permission denied. Allow camera access and retry.");
       } else {
         setTorchError(`Camera error: ${msg}`);
       }
-      return null;
     }
+
+    // Fallback: white screen
+    setUsingScreen(true);
+    setTorchOn(true);
+    setSupportsTorch(false);
   }, [stopCamera]);
 
-  const setTorch = useCallback(
-    async (on: boolean) => {
-      const track = await ensureTrack();
-      if (!track) {
-        // Fallback to screen
-        setUsingScreen(on);
-        setTorchOn(on);
-        return;
-      }
-
-      const capabilities = track.getCapabilities?.() as any;
-      if (!capabilities?.torch) {
-        setSupportsTorch(false);
-        setUsingScreen(on);
-        setTorchOn(on);
-        return;
-      }
-
-      try {
-        await track.applyConstraints({ advanced: [{ torch: on } as any] });
-        setSupportsTorch(true);
-        setUsingScreen(false);
-        setTorchOn(on);
-        setTorchError(null);
-      } catch (err: any) {
-        setTorchError(`applyConstraints failed: ${err?.message || err}`);
-        setSupportsTorch(false);
-        setUsingScreen(on);
-        setTorchOn(on);
-      }
-    },
-    [ensureTrack]
-  );
-
-  const enableTorch = useCallback(async () => {
-    await setTorch(true);
-  }, [setTorch]);
-
   const disableTorch = useCallback(async () => {
-    await setTorch(false);
-  }, [setTorch]);
+    if (trackRef.current) {
+      try {
+        await trackRef.current.applyConstraints({ advanced: [{ torch: false } as any] });
+      } catch {
+        // ignore
+      }
+    }
+    setTorchOn(false);
+    setUsingScreen(false);
+  }, []);
 
   const toggleTorch = useCallback(async () => {
     if (torchOn) {
       await disableTorch();
       stopCamera();
-      setUsingScreen(false);
     } else {
       await enableTorch();
     }
   }, [torchOn, enableTorch, disableTorch, stopCamera]);
 
+  const releaseTorch = useCallback(() => {
+    stopCamera();
+    setTorchOn(false);
+    setUsingScreen(false);
+  }, [stopCamera]);
+
   useEffect(() => {
-    return () => {
-      stopCamera();
-    };
+    return () => { stopCamera(); };
   }, [stopCamera]);
 
   return {
@@ -161,6 +172,6 @@ export function useTorch(): TorchState {
     toggleTorch,
     enableTorch,
     disableTorch,
-    releaseTorch: stopCamera,
+    releaseTorch,
   };
 }
