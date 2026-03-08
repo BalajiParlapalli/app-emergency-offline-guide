@@ -39,9 +39,6 @@ const EmergencyMode = () => {
     }
   }, []);
 
-  // Flashlight toggle (white screen)
-  const toggleFlashlight = () => setFlashlightOn(f => !f);
-
   // Alarm
   const toggleAlarm = useCallback(() => {
     if (alarmOn) {
