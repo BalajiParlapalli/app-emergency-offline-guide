@@ -113,5 +113,5 @@ export function useTorch(): TorchState {
     };
   }, [stopCamera]);
 
-  return { torchOn, usingScreen, supportsTorch, toggleTorch, enableTorch, disableTorch };
+  return { torchOn, usingScreen, supportsTorch, toggleTorch, enableTorch, disableTorch, releaseTorch: stopCamera };
 }
