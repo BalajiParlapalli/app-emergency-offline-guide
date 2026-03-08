@@ -11,6 +11,9 @@ import MorseCode from "./pages/MorseCode";
 import Braille from "./pages/Braille";
 import SOS from "./pages/SOS";
 import EDCKit from "./pages/EDCKit";
+import Compass from "./pages/Compass";
+import EmergencyChecklist from "./pages/EmergencyChecklist";
+import EmergencyMode from "./pages/EmergencyMode";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/morse" element={<MorseCode />} />
           <Route path="/braille" element={<Braille />} />
           <Route path="/sos" element={<SOS />} />
+          <Route path="/compass" element={<Compass />} />
+          <Route path="/emergency-checklist" element={<EmergencyChecklist />} />
+          <Route path="/emergency" element={<EmergencyMode />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
