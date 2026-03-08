@@ -17,6 +17,7 @@ import EmergencyMode from "./pages/EmergencyMode";
 import NotFound from "./pages/NotFound";
 import BottomNav from "./components/BottomNav";
 import VoiceCommand from "./components/VoiceCommand";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/edc" element={<EDCKit />} />
