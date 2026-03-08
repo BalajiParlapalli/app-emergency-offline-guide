@@ -193,7 +193,7 @@ const EmergencyMode = () => {
       {/* Location */}
       <div className="border border-border rounded-lg p-4 mb-6">
         <div className="flex items-center gap-2 mb-2">
-          <MapPin className="h-5 w-5 text-primary" />
+          <MapPin className="h-5 w-5 text-primary" aria-hidden="true" />
           <h3 className="font-semibold">📍 Your Location</h3>
         </div>
         {location ? (
