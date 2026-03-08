@@ -1,74 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Mic, MicOff } from "lucide-react";
-
-const commands: Record<string, string> = {
-  "home": "/",
-  "emergency": "/emergency",
-  "emergency mode": "/emergency",
-  "guide": "/guide",
-  "survival guide": "/guide",
-  "survival": "/guide",
-  "morse": "/morse",
-  "morse code": "/morse",
-  "braille": "/braille",
-  "compass": "/compass",
-  "direction": "/compass",
-  "checklist": "/emergency-checklist",
-  "emergency checklist": "/emergency-checklist",
-  "sos": "/sos",
-  "signal": "/sos",
-  "signals": "/sos",
-  "notebook": "/notebook",
-  "notes": "/notebook",
-  "note": "/notebook",
-  "kit": "/edc",
-  "backpack": "/edc",
-  "edc": "/edc",
-  "first aid": "/guide/first-aid",
-  "help": "/emergency",
-  "help me": "/emergency",
-  "danger": "/emergency",
-};
-
-// Normalize text: remove punctuation, extra spaces
-const normalize = (text: string) =>
-  text.toLowerCase().replace(/[^a-z0-9\s]/g, "").replace(/\s+/g, " ").trim();
-
-// Extract words from transcript and try to match commands using word boundaries
-const findCommand = (transcript: string): string | null => {
-  const normalized = normalize(transcript);
-  const words = normalized.split(" ");
-
-  // Sort commands by key length (longest first) for best matching
-  const sorted = Object.entries(commands).sort((a, b) => b[0].length - a[0].length);
-
-  for (const [key] of sorted) {
-    const keyWords = key.split(" ");
-
-    // Multi-word command: check if all key words appear in order in the transcript
-    if (keyWords.length > 1) {
-      let searchFrom = 0;
-      let allFound = true;
-      for (const kw of keyWords) {
-        const idx = words.indexOf(kw, searchFrom);
-        if (idx === -1) { allFound = false; break; }
-        searchFrom = idx + 1;
-      }
-      if (allFound) return key;
-    } else {
-      // Single word: check if the word exists anywhere in transcript words
-      if (words.includes(key)) return key;
-    }
-  }
-
-  // Fallback: substring match for compound words (e.g., "opencompass")
-  for (const [key] of sorted) {
-    if (normalized.includes(key)) return key;
-  }
-
-  return null;
-};
+import { commands, findCommand } from "@/lib/voice-commands";
 
 const VoiceCommand = () => {
   const [listening, setListening] = useState(false);

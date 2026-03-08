@@ -1,19 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import BackLink from "@/components/BackLink";
 import { useTorch } from "@/hooks/use-torch";
-
-const morseMap: Record<string, string> = {
-  A: "·−", B: "−···", C: "−·−·", D: "−··", E: "·", F: "··−·",
-  G: "−−·", H: "····", I: "··", J: "·−−−", K: "−·−", L: "·−··",
-  M: "−−", N: "−·", O: "−−−", P: "·−−·", Q: "−−·−", R: "·−·",
-  S: "···", T: "−", U: "··−", V: "···−", W: "·−−", X: "−··−",
-  Y: "−·−−", Z: "−−··",
-  "0": "−−−−−", "1": "·−−−−", "2": "··−−−", "3": "···−−",
-  "4": "····−", "5": "·····", "6": "−····", "7": "−−···",
-  "8": "−−−··", "9": "−−−−·",
-  ".": "·−·−·−", ",": "−−··−−", "?": "··−−··", "!": "−·−·−−",
-  " ": "/",
-};
+import { morseMap, textToMorse } from "@/lib/morse";
 
 const survivalPhrases = [
   { text: "SOS", morse: "··· −−− ···", meaning: "International distress signal" },
@@ -33,8 +21,6 @@ const survivalPhrases = [
   { text: "MEDICINE", morse: "−− · −·· ·· −·−· ·· −· ·", meaning: "Need medical supplies" },
 ];
 
-const textToMorse = (text: string) =>
-  text.toUpperCase().split("").map(c => morseMap[c] || "").join(" ");
 
 const DOT_MS = 200;
 const DASH_MS = 600;

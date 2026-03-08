@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Clock, Bell, BellOff, X } from "lucide-react";
+import { toIST, getISTHHMM } from "@/lib/ist-time";
 
 const ALARM_KEY = "survival-alarm";
 
@@ -20,10 +21,8 @@ const ClockWidget = () => {
   // Check alarm against IST
   useEffect(() => {
     if (!alarmActive || !alarmTime) return;
-    const istOff = 5.5 * 60 * 60 * 1000;
-    const utcNow = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
-    const istNow = new Date(utcNow + istOff);
-    const hhmm = `${String(istNow.getHours()).padStart(2, "0")}:${String(istNow.getMinutes()).padStart(2, "0")}`;
+    const hhmm = getISTHHMM(now);
+    const istNow = toIST(now);
     if (hhmm === alarmTime && istNow.getSeconds() === 0) {
       setAlarmRinging(true);
       startAlarmSound();
@@ -85,9 +84,7 @@ const ClockWidget = () => {
   }, []);
 
   // Convert to IST (UTC+5:30)
-  const istOffset = 5.5 * 60 * 60 * 1000;
-  const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
-  const ist = new Date(utc + istOffset);
+  const ist = toIST(now);
   const timeStr = ist.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
   const dateStr = ist.toLocaleDateString("en-IN", { day: "2-digit", month: "2-digit", year: "numeric" });
 
