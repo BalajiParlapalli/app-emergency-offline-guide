@@ -994,7 +994,7 @@ export const guideTopics: GuideTopic[] = [
           "2. Common Krait — nocturnal, painless bite, most dangerous, neurotoxic",
           "3. Russell's Viper (Koriwala) — aggressive, hemotoxic, causes kidney failure",
           "4. Saw-scaled Viper (Phoorsa) — small, aggressive, common in Rajasthan/Gujarat",
-          "India has 50,000+ snakebite deaths annually — mostly rural areas",
+          "India has an estimated 46,000-58,000 snakebite deaths annually — mostly rural areas",
           "Anti-venom (polyvalent ASV) is available free at all government hospitals",
           "Most bites happen at night, in fields, or near water — wear boots and carry a torch",
         ],
