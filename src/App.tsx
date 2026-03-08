@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Guide from "./pages/Guide";
 import GuideTopic from "./pages/GuideTopic";
+import Bookmarks from "./pages/Bookmarks";
 import MorseCode from "./pages/MorseCode";
 import Braille from "./pages/Braille";
 import SOS from "./pages/SOS";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/edc" element={<EDCKit />} />
           <Route path="/guide" element={<Guide />} />
+          <Route path="/guide/bookmarks" element={<Bookmarks />} />
           <Route path="/guide/:topicSlug" element={<GuideTopic />} />
           <Route path="/morse" element={<MorseCode />} />
           <Route path="/braille" element={<Braille />} />
