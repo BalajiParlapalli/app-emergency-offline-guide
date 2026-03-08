@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { BookOpen, ClipboardList, Radio, Braces } from "lucide-react";
+import { BookOpen, ClipboardList, Radio, Braces, Siren } from "lucide-react";
 
 const sections = [
   { to: "/guide", icon: BookOpen, label: "Survival Guide", desc: "Water, food, shelter, first aid & fire" },
   { to: "/checklist", icon: ClipboardList, label: "Checklist", desc: "Track your supplies & gear" },
   { to: "/morse", icon: Radio, label: "Morse Code", desc: "Encode & decode messages" },
   { to: "/braille", icon: Braces, label: "Braille", desc: "Braille alphabet reference" },
+  { to: "/sos", icon: Siren, label: "SOS Signals", desc: "Emergency signals & India helplines" },
 ];
 
 const Index = () => {
