@@ -23,6 +23,7 @@ const ClockWidget = () => {
     if (!alarmActive || !alarmTime) return;
     const hhmm = getISTHHMM(now);
     const istNow = toIST(now);
+    if (hhmm === alarmTime && istNow.getSeconds() === 0) {
       setAlarmRinging(true);
       startAlarmSound();
     }
