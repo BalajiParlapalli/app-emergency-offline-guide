@@ -16,8 +16,8 @@ const sections = [
 
 const features = [
   { icon: WifiOff, label: "100% Offline", desc: "Works without internet — install as app" },
-  { icon: Shield, label: "NDMA Verified", desc: "Data verified with Indian authorities" },
-  { icon: Accessibility, label: "Accessible", desc: "Voice commands, screen readers, POUR" },
+  { icon: Shield, label: "Verified Data", desc: "Data verified with Indian Websites" },
+  { icon: Accessibility, label: "Accessible", desc: "Voice commands, screen readers" },
   { icon: Hand, label: "One-Hand Use", desc: "Bottom navigation, large touch targets" },
 ];
 
@@ -38,7 +38,7 @@ const Index = () => {
         <h1 className="text-4xl md:text-5xl font-bold text-primary tracking-tight leading-tight">
           SURVIVAL KIT
         </h1>
-        <p className="text-muted-foreground mt-2 text-lg">After Apocalypse Offline Toolkit</p>
+        <p className="text-muted-foreground mt-2 text-lg"><p className="text-muted-foreground mt-2 text-lg">An Emergency Offline Toolkit</p></p>
         <p className="text-sm text-muted-foreground mt-1">Made for India · Works without internet</p>
       </div>
 
@@ -103,7 +103,7 @@ const Index = () => {
       <footer className="mt-12 text-center max-w-lg w-full" aria-label="Footer">
         <div className="border border-border rounded-lg p-4 mb-4">
           <p className="text-xs text-muted-foreground">
-            📋 Verified: NDMA · NDRF · NIDM · MoHFW · Indian Red Cross · Civil Defence India
+            Built for emergencies · Works 100% offline
           </p>
         </div>
         <p className="text-xs text-muted-foreground mono">v4.0 — works 100% offline · accessible · India focused</p>
