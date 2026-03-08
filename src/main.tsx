@@ -77,9 +77,17 @@ function showUpdateToast(updateSW: (reloadPage?: boolean) => Promise<void>) {
       cursor: pointer;
       white-space: nowrap;
     ">Update now</button>
+    <button id="pwa-dismiss-btn" aria-label="Dismiss" style="
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 2px 6px;
+      line-height: 1;
+    ">✕</button>
   `;
 
-  // Add animation keyframes
   if (!document.getElementById("pwa-toast-style")) {
     const style = document.createElement("style");
     style.id = "pwa-toast-style";
@@ -92,6 +100,10 @@ function showUpdateToast(updateSW: (reloadPage?: boolean) => Promise<void>) {
   container.querySelector("#pwa-update-btn")!.addEventListener("click", () => {
     container.querySelector("#pwa-update-btn")!.textContent = "Updating…";
     updateSW(true);
+  });
+
+  container.querySelector("#pwa-dismiss-btn")!.addEventListener("click", () => {
+    container.remove();
   });
 }
 
