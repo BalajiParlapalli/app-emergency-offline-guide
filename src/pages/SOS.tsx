@@ -109,7 +109,7 @@ const SOS = () => {
 
       <div className="space-y-4">
         {sections.map((section, i) => (
-          <details key={i} className="border border-border rounded-lg group" open={i === 0}>
+          <details key={i} className="border border-border rounded-lg group">
             <summary className="px-4 py-3 font-semibold text-lg cursor-pointer hover:bg-secondary/50 transition-colors list-none flex justify-between items-center">
               {section.title}
               <span className="text-muted-foreground text-sm group-open:rotate-180 transition-transform">▼</span>
