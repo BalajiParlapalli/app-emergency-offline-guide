@@ -149,11 +149,16 @@ const EmergencyMode = () => {
       <div className="grid grid-cols-2 gap-2 mb-6">
         <button
           onClick={toggleFlashlight}
-          className="touch-target flex flex-col items-center gap-2 border border-border rounded-lg p-4 hover:border-primary/50 transition-colors bg-card"
-          aria-label="Toggle flashlight — turns screen white"
+          className={`touch-target flex flex-col items-center gap-2 border rounded-lg p-4 transition-colors ${
+            flashlightOn ? "border-primary bg-primary/20" : "border-border bg-card hover:border-primary/50"
+          }`}
+          aria-label="Toggle flashlight"
         >
           <Flashlight className="h-8 w-8 text-primary" aria-hidden="true" />
-          <span className="text-sm font-semibold">🔦 Flashlight</span>
+          <span className="text-sm font-semibold">{flashlightOn ? "⬛ Turn Off" : "🔦 Flashlight"}</span>
+          {flashUsingScreen && flashlightOn && (
+            <span className="text-xs text-muted-foreground">Screen mode</span>
+          )}
         </button>
 
         <button
