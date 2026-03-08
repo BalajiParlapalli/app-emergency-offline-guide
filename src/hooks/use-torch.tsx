@@ -100,10 +100,12 @@ export function useTorch(): TorchState {
   const toggleTorch = useCallback(async () => {
     if (torchOn) {
       await disableTorch();
+      stopCamera();
+      setUsingScreen(false);
     } else {
       await enableTorch();
     }
-  }, [torchOn, enableTorch, disableTorch]);
+  }, [torchOn, enableTorch, disableTorch, stopCamera]);
 
   useEffect(() => {
     return () => {
