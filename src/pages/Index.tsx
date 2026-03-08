@@ -103,7 +103,7 @@ const Index = () => {
       <footer className="mt-12 text-center max-w-lg w-full" aria-label="Footer">
         <div className="border border-border rounded-lg p-4 mb-4">
           <p className="text-xs text-muted-foreground">
-            📋 Verified: NDMA · NDRF · NIDM · MoHFW · Indian Red Cross · Civil Defence India
+            Built for emergencies · Works 100% offline
           </p>
         </div>
         <p className="text-xs text-muted-foreground mono">v4.0 — works 100% offline · accessible · India focused</p>
