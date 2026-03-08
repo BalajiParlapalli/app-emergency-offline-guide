@@ -1,48 +1,106 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Radio, Braces, Siren, Backpack, AlertTriangle, Navigation, Zap } from "lucide-react";
+import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, Wifi, WifiOff, Accessibility, Hand } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const sections = [
-  { to: "/emergency", icon: AlertTriangle, label: "🚨 Emergency Mode", desc: "Call, locate, signal — one tap", highlight: true },
-  { to: "/emergency-checklist", icon: Zap, label: "⚡ 3-Min Checklist", desc: "Step-by-step disaster response" },
-  { to: "/guide", icon: BookOpen, label: "Survival Guide", desc: "24 topics — first aid, disasters & more" },
-  { to: "/sos", icon: Siren, label: "SOS Signals", desc: "Emergency signals & India helplines" },
-  { to: "/compass", icon: Navigation, label: "🧭 Compass", desc: "Digital compass for navigation" },
-  { to: "/morse", icon: Radio, label: "Morse Code", desc: "Encode, decode & flash messages" },
-  { to: "/braille", icon: Braces, label: "Braille", desc: "Braille alphabet & survival phrases" },
-  { to: "/edc", icon: Backpack, label: "EDC Kit", desc: "Everyday carry survival checklist" },
+  { to: "/emergency", icon: AlertTriangle, label: "Emergency Mode", pictogram: "🚨", desc: "Call, locate, signal — one tap", highlight: true },
+  { to: "/emergency-checklist", icon: Zap, label: "3-Min Checklist", pictogram: "⚡", desc: "Step-by-step disaster response" },
+  { to: "/guide", icon: BookOpen, label: "Survival Guide", pictogram: "📖", desc: "24 topics — first aid, disasters & more" },
+  { to: "/sos", icon: Siren, label: "SOS Signals", pictogram: "🆘", desc: "Emergency signals & India helplines" },
+  { to: "/compass", icon: Navigation, label: "Compass", pictogram: "🧭", desc: "Digital compass for navigation" },
+  { to: "/morse", icon: Radio, label: "Morse Code", pictogram: "📡", desc: "Encode, decode & flash messages" },
+  { to: "/braille", icon: Braces, label: "Braille", pictogram: "⠃", desc: "Braille alphabet & survival phrases" },
+  { to: "/edc", icon: Backpack, label: "EDC Kit", pictogram: "🎒", desc: "Everyday carry survival checklist" },
+  { to: "/notebook", icon: StickyNote, label: "Notebook", pictogram: "📓", desc: "Personal notes & saved bookmarks" },
+];
+
+const features = [
+  { icon: WifiOff, label: "100% Offline", desc: "Works without internet — install as app" },
+  { icon: Shield, label: "NDMA Verified", desc: "Data verified with Indian authorities" },
+  { icon: Accessibility, label: "Accessible", desc: "Voice commands, one-hand mode, screen readers" },
+  { icon: Hand, label: "One-Hand Use", desc: "Bottom navigation, large touch targets" },
 ];
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-8">
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold text-primary tracking-tight">
-          ☢ SURVIVAL KIT
+    <div className="min-h-screen flex flex-col items-center px-4 py-8 pb-24">
+      {/* Skip to content for screen readers */}
+      <a href="#main-tools" className="skip-link">Skip to main tools</a>
+
+      {/* Header */}
+      <header className="w-full max-w-lg flex items-center justify-between mb-8">
+        <div />
+        <ThemeToggle />
+      </header>
+
+      {/* Hero */}
+      <div className="text-center mb-8 max-w-lg">
+        <div className="text-6xl mb-4" role="img" aria-label="Radioactive symbol">☢</div>
+        <h1 className="text-4xl md:text-5xl font-bold text-primary tracking-tight leading-tight">
+          SURVIVAL KIT
         </h1>
         <p className="text-muted-foreground mt-2 text-lg">After Apocalypse Offline Toolkit</p>
+        <p className="text-sm text-muted-foreground/70 mt-1">Made for India · Works without internet</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
-        {sections.map(({ to, icon: Icon, label, desc, highlight }) => (
-          <Link
-            key={to}
-            to={to}
-            className={`flex items-start gap-4 rounded-lg border p-5 transition-colors ${
-              highlight
-                ? "border-destructive/60 bg-destructive/10 hover:bg-destructive/20 sm:col-span-2"
-                : "border-border bg-card hover:border-primary/60 hover:bg-card/80"
-            }`}
-          >
-            <Icon className={`h-7 w-7 shrink-0 mt-0.5 ${highlight ? "text-destructive" : "text-primary"}`} />
+      {/* Emergency CTA */}
+      <Link
+        to="/emergency"
+        className="w-full max-w-lg flex items-center gap-4 rounded-xl border-2 border-destructive/60 bg-destructive/10 hover:bg-destructive/20 p-5 mb-6 transition-all active:scale-[0.98]"
+        aria-label="Open Emergency Mode — call, locate, signal in one tap"
+      >
+        <AlertTriangle className="h-10 w-10 text-destructive shrink-0" aria-hidden="true" />
+        <div className="flex-1">
+          <p className="font-bold text-xl leading-tight text-destructive">🚨 EMERGENCY MODE</p>
+          <p className="text-sm text-muted-foreground">Call emergency numbers · SOS signal · GPS location</p>
+        </div>
+        <span className="text-destructive text-2xl" aria-hidden="true">→</span>
+      </Link>
+
+      {/* Feature badges */}
+      <div className="w-full max-w-lg grid grid-cols-2 gap-2 mb-8">
+        {features.map(({ icon: Icon, label, desc }) => (
+          <div key={label} className="flex items-center gap-2 rounded-lg border border-border bg-card/50 px-3 py-2">
+            <Icon className="h-4 w-4 text-primary shrink-0" aria-hidden="true" />
             <div>
-              <p className="font-semibold text-lg leading-tight">{label}</p>
-              <p className="text-sm text-muted-foreground">{desc}</p>
+              <p className="text-xs font-semibold leading-tight">{label}</p>
+              <p className="text-xs text-muted-foreground/70 leading-tight">{desc}</p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
 
-      <p className="text-xs text-muted-foreground mt-12 mono">v3.0 — works 100% offline</p>
+      {/* Tools grid */}
+      <main id="main-tools" className="w-full max-w-lg" role="main">
+        <h2 className="text-lg font-semibold mb-3">All Tools</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {sections.filter(s => !s.highlight).map(({ to, icon: Icon, label, pictogram, desc }) => (
+            <Link
+              key={to}
+              to={to}
+              className="touch-target flex items-start gap-3 rounded-lg border border-border bg-card hover:border-primary/60 hover:bg-card/80 p-4 transition-all active:scale-[0.98]"
+              aria-label={`${label} — ${desc}`}
+            >
+              <span className="text-2xl shrink-0" role="img" aria-hidden="true">{pictogram}</span>
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold leading-tight">{label}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
+              </div>
+              <Icon className="h-5 w-5 text-muted-foreground/40 shrink-0 mt-0.5" aria-hidden="true" />
+            </Link>
+          ))}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-12 text-center max-w-lg w-full">
+        <div className="border border-border rounded-lg p-4 mb-4">
+          <p className="text-xs text-muted-foreground">
+            📋 Verified: NDMA · NDRF · NIDM · MoHFW · Indian Red Cross · Civil Defence India
+          </p>
+        </div>
+        <p className="text-xs text-muted-foreground mono">v4.0 — works 100% offline · accessible · India focused</p>
+      </footer>
     </div>
   );
 };

@@ -72,7 +72,7 @@ const MorseCode = () => {
   const stopFlash = () => { abortRef.current = true; setFlashOn(false); setFlashing(false); };
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto">
+    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="Morse Code Tool">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-6">📡 Morse Code</h1>
 
@@ -92,9 +92,10 @@ const MorseCode = () => {
         {input && (
           <button
             onClick={() => flashing ? stopFlash() : flashMorse(input)}
-            className={`w-full py-2 rounded-md text-sm font-semibold transition-colors ${
+            className={`touch-target w-full py-3 rounded-md text-sm font-semibold transition-colors ${
               flashing ? "bg-destructive text-destructive-foreground" : "bg-primary text-primary-foreground"
             }`}
+            aria-label={flashing ? "Stop Morse flashlight" : "Flash input text as Morse code"}
           >
             {flashing ? "⬛ Stop Flashlight" : "🔦 Flash as Morse"}
           </button>
@@ -115,8 +116,9 @@ const MorseCode = () => {
               <span className="font-semibold">{text}</span>
               <button
                 onClick={() => flashMorse(text)}
-                className="text-xs text-primary hover:text-primary/80 mono"
+                className="touch-target text-xs text-primary hover:text-primary/80 mono px-2 py-1"
                 disabled={flashing}
+                aria-label={`Flash ${text} as Morse code`}
               >
                 🔦 Flash
               </button>

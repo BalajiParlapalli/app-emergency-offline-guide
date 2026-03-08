@@ -36,7 +36,7 @@ const Compass = () => {
   };
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto flex flex-col items-center">
+    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto flex flex-col items-center pb-24" role="main" aria-label="Digital Compass">
       <div className="self-start w-full"><BackLink /></div>
       <h1 className="text-3xl font-bold text-primary mb-6">🧭 Compass</h1>
 

@@ -45,6 +45,45 @@
     --sidebar-border: 0 0% 20%;
     --sidebar-ring: 25 95% 53%;
   }
+
+  .light {
+    --background: 40 20% 96%;
+    --foreground: 20 10% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 10% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 10% 12%;
+
+    --primary: 25 95% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 10% 90%;
+    --secondary-foreground: 20 10% 25%;
+
+    --muted: 30 10% 92%;
+    --muted-foreground: 20 5% 45%;
+
+    --accent: 25 80% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 10% 82%;
+    --input: 30 10% 82%;
+    --ring: 25 95% 45%;
+
+    --sidebar-background: 30 10% 94%;
+    --sidebar-foreground: 20 10% 12%;
+    --sidebar-primary: 25 95% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 10% 88%;
+    --sidebar-accent-foreground: 20 10% 12%;
+    --sidebar-border: 30 10% 82%;
+    --sidebar-ring: 25 95% 45%;
+  }
 }
 
 @layer base {
@@ -64,5 +103,21 @@
 
   code, .mono {
     font-family: 'Share Tech Mono', monospace;
+  }
+
+  /* Skip link for accessibility */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-md focus:text-sm focus:font-semibold;
+  }
+
+  /* Focus visible for keyboard navigation */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  /* Large touch targets for one-hand mode */
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
   }
 }

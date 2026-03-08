@@ -22,7 +22,7 @@ const EmergencyChecklist = () => {
   const done = checked.filter(Boolean).length;
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto">
+    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" role="main" aria-label="3-Minute Emergency Checklist">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">⚡ 3-Minute Emergency Checklist</h1>
       <p className="text-sm text-muted-foreground mb-4">When disaster strikes, follow these steps in order</p>
@@ -43,7 +43,9 @@ const EmergencyChecklist = () => {
           <button
             key={i}
             onClick={() => toggle(i)}
-            className={`w-full text-left border rounded-lg p-4 transition-all ${
+            aria-label={`${checked[i] ? "Uncheck" : "Check"}: ${step.title}`}
+            aria-pressed={checked[i]}
+            className={`touch-target w-full text-left border rounded-lg p-4 transition-all ${
               checked[i]
                 ? "border-primary/50 bg-primary/10"
                 : "border-border bg-card hover:border-primary/30"

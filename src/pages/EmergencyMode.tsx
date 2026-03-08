@@ -115,7 +115,7 @@ const EmergencyMode = () => {
   }, []);
 
   return (
-    <div className="min-h-screen px-4 py-6 max-w-lg mx-auto">
+    <div className="min-h-screen px-4 py-6 max-w-lg mx-auto pb-24" role="main" aria-label="Emergency Mode">
       {/* SOS flash overlay */}
       {sosFlash && <div className="fixed inset-0 z-50 bg-white" onClick={stopSOS} />}
       {/* Flashlight overlay */}
@@ -150,30 +150,33 @@ const EmergencyMode = () => {
       <div className="grid grid-cols-2 gap-2 mb-6">
         <button
           onClick={toggleFlashlight}
-          className="flex flex-col items-center gap-2 border border-border rounded-lg p-4 hover:border-primary/50 transition-colors bg-card"
+          className="touch-target flex flex-col items-center gap-2 border border-border rounded-lg p-4 hover:border-primary/50 transition-colors bg-card"
+          aria-label="Toggle flashlight — turns screen white"
         >
-          <Flashlight className="h-8 w-8 text-primary" />
-          <span className="text-sm font-semibold">Flashlight</span>
+          <Flashlight className="h-8 w-8 text-primary" aria-hidden="true" />
+          <span className="text-sm font-semibold">🔦 Flashlight</span>
         </button>
 
         <button
           onClick={() => sosActive ? stopSOS() : startSOS()}
-          className={`flex flex-col items-center gap-2 border rounded-lg p-4 transition-colors ${
+          className={`touch-target flex flex-col items-center gap-2 border rounded-lg p-4 transition-colors ${
             sosActive ? "border-destructive bg-destructive/20" : "border-border bg-card hover:border-primary/50"
           }`}
+          aria-label={sosActive ? "Stop SOS blinking signal" : "Start SOS blinking signal"}
         >
-          <Radio className="h-8 w-8 text-primary" />
-          <span className="text-sm font-semibold">{sosActive ? "Stop SOS" : "SOS Signal"}</span>
+          <Radio className="h-8 w-8 text-primary" aria-hidden="true" />
+          <span className="text-sm font-semibold">{sosActive ? "⬛ Stop SOS" : "📡 SOS Signal"}</span>
         </button>
 
         <button
           onClick={toggleAlarm}
-          className={`flex flex-col items-center gap-2 border rounded-lg p-4 transition-colors ${
+          className={`touch-target flex flex-col items-center gap-2 border rounded-lg p-4 transition-colors ${
             alarmOn ? "border-destructive bg-destructive/20" : "border-border bg-card hover:border-primary/50"
           }`}
+          aria-label={alarmOn ? "Stop loud alarm" : "Start loud alarm siren"}
         >
-          {alarmOn ? <VolumeX className="h-8 w-8 text-destructive" /> : <Volume2 className="h-8 w-8 text-primary" />}
-          <span className="text-sm font-semibold">{alarmOn ? "Stop Alarm" : "Loud Alarm"}</span>
+          {alarmOn ? <VolumeX className="h-8 w-8 text-destructive" aria-hidden="true" /> : <Volume2 className="h-8 w-8 text-primary" aria-hidden="true" />}
+          <span className="text-sm font-semibold">{alarmOn ? "🔇 Stop Alarm" : "🔊 Loud Alarm"}</span>
         </button>
 
         <Link
@@ -199,7 +202,8 @@ const EmergencyMode = () => {
             <p className="text-xs text-muted-foreground mt-1">Share these coordinates with emergency services</p>
             <button
               onClick={() => navigator.clipboard?.writeText(`${location.lat.toFixed(6)}, ${location.lng.toFixed(6)}`)}
-              className="mt-2 text-xs text-primary hover:text-primary/80 mono"
+              className="touch-target mt-2 text-xs text-primary hover:text-primary/80 mono py-1"
+              aria-label="Copy GPS coordinates to clipboard"
             >
               📋 Copy Coordinates
             </button>
