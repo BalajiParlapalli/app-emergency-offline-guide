@@ -55,10 +55,11 @@ const Guide = () => {
           onChange={e => setQuery(e.target.value)}
           placeholder="Search topics... (e.g. snake bite, ORS, fire)"
           className="w-full bg-secondary border border-border rounded-md pl-9 pr-9 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+          aria-label="Search survival guide topics"
         />
         {query && (
-          <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary">
-            <X className="h-4 w-4" />
+          <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary" aria-label="Clear search">
+            <X className="h-4 w-4" aria-hidden="true" />
           </button>
         )}
       </div>

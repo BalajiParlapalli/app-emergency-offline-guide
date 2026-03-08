@@ -119,7 +119,7 @@ const Compass = () => {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-primary text-2xl" aria-hidden="true">▼</div>
           </div>
 
-          <div className="text-center" aria-live="polite">
+          <div className="text-center" aria-live="off" role="status" aria-label={`Heading: ${heading} degrees, direction: ${getDirection(heading)}`}>
             <p className="text-5xl font-bold mono text-primary">{heading}°</p>
             <p className="text-2xl font-semibold text-foreground mt-1">{getDirection(heading)}</p>
           </div>

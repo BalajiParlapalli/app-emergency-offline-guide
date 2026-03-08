@@ -25,7 +25,7 @@ const commands: Record<string, string> = {
   "kit": "/edc",
   "backpack": "/edc",
   "edc": "/edc",
-  "first aid": "/guide/first-aid-medical",
+  "first aid": "/guide/first-aid",
   "help": "/emergency",
   "help me": "/emergency",
   "danger": "/emergency",

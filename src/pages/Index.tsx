@@ -38,7 +38,7 @@ const Index = () => {
         <h1 className="text-4xl md:text-5xl font-bold text-primary tracking-tight leading-tight">
           SURVIVAL KIT
         </h1>
-        <p className="text-muted-foreground mt-2 text-lg"><p className="text-muted-foreground mt-2 text-lg">An Emergency Offline Toolkit</p></p>
+        <p className="text-muted-foreground mt-2 text-lg">An Emergency Offline Toolkit</p>
         <p className="text-sm text-muted-foreground mt-1">Made for India · Works without internet</p>
       </div>
 

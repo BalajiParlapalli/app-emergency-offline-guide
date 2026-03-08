@@ -173,7 +173,7 @@ const EDCKit = () => {
       <h1 className="text-3xl font-bold text-primary mb-2">🎒 EDC Survival Kit</h1>
       <div className="flex items-center justify-between mb-6">
         <p className="text-sm text-muted-foreground mono">{totalChecked}/{totalItems} packed</p>
-        <button onClick={resetAll} className="text-xs text-muted-foreground hover:text-primary transition-colors">Reset all</button>
+        <button onClick={resetAll} className="touch-target text-xs text-muted-foreground hover:text-primary transition-colors px-2 py-1" aria-label="Reset all kit items to unchecked">Reset all</button>
       </div>
 
       <div className="space-y-5">
