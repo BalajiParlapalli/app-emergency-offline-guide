@@ -87,10 +87,11 @@ const GuideTopic = () => {
                     </span>
                     <button
                       onClick={() => handleToggle(section.heading, point)}
-                      className={`shrink-0 mt-0.5 transition-colors ${saved ? "text-primary" : "text-muted-foreground/30 hover:text-muted-foreground"}`}
-                      title={saved ? "Remove bookmark" : "Bookmark this"}
+                      className={`touch-target shrink-0 mt-0.5 transition-colors p-1 ${saved ? "text-primary" : "text-muted-foreground/30 hover:text-muted-foreground"}`}
+                      aria-label={saved ? `Remove bookmark: ${point.slice(0, 30)}` : `Bookmark: ${point.slice(0, 30)}`}
+                      aria-pressed={saved}
                     >
-                      {saved ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
+                      {saved ? <BookmarkCheck className="h-4 w-4" aria-hidden="true" /> : <Bookmark className="h-4 w-4" aria-hidden="true" />}
                     </button>
                   </li>
                 );

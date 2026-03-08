@@ -190,7 +190,9 @@ const EDCKit = () => {
                   <button
                     key={ii}
                     onClick={() => toggle(ci, ii)}
-                    className="flex items-center gap-3 w-full text-left py-1.5"
+                    className="touch-target flex items-center gap-3 w-full text-left py-2"
+                    aria-label={`${item.checked ? "Uncheck" : "Check"} ${item.text}`}
+                    aria-pressed={item.checked}
                   >
                     <span className={`h-5 w-5 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${item.checked ? "bg-primary border-primary" : "border-muted-foreground"}`}>
                       {item.checked && <span className="text-primary-foreground text-xs">✓</span>}

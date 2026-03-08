@@ -92,9 +92,10 @@ const MorseCode = () => {
         {input && (
           <button
             onClick={() => flashing ? stopFlash() : flashMorse(input)}
-            className={`w-full py-2 rounded-md text-sm font-semibold transition-colors ${
+            className={`touch-target w-full py-3 rounded-md text-sm font-semibold transition-colors ${
               flashing ? "bg-destructive text-destructive-foreground" : "bg-primary text-primary-foreground"
             }`}
+            aria-label={flashing ? "Stop Morse flashlight" : "Flash input text as Morse code"}
           >
             {flashing ? "⬛ Stop Flashlight" : "🔦 Flash as Morse"}
           </button>

@@ -202,7 +202,8 @@ const EmergencyMode = () => {
             <p className="text-xs text-muted-foreground mt-1">Share these coordinates with emergency services</p>
             <button
               onClick={() => navigator.clipboard?.writeText(`${location.lat.toFixed(6)}, ${location.lng.toFixed(6)}`)}
-              className="mt-2 text-xs text-primary hover:text-primary/80 mono"
+              className="touch-target mt-2 text-xs text-primary hover:text-primary/80 mono py-1"
+              aria-label="Copy GPS coordinates to clipboard"
             >
               📋 Copy Coordinates
             </button>

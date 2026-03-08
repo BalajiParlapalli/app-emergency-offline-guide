@@ -43,7 +43,9 @@ const EmergencyChecklist = () => {
           <button
             key={i}
             onClick={() => toggle(i)}
-            className={`w-full text-left border rounded-lg p-4 transition-all ${
+            aria-label={`${checked[i] ? "Uncheck" : "Check"}: ${step.title}`}
+            aria-pressed={checked[i]}
+            className={`touch-target w-full text-left border rounded-lg p-4 transition-all ${
               checked[i]
                 ? "border-primary/50 bg-primary/10"
                 : "border-border bg-card hover:border-primary/30"
