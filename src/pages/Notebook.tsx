@@ -83,7 +83,7 @@ const Notebook = () => {
   }, {});
 
   return (
-    <div className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24">
+    <main className="min-h-screen px-4 py-8 max-w-lg mx-auto pb-24" aria-label="Notebook">
       <BackLink />
       <h1 className="text-3xl font-bold text-primary mb-2">📓 Notebook</h1>
       <p className="text-sm text-muted-foreground mb-4">Your personal notes & saved survival tips</p>
