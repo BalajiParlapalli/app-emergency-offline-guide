@@ -478,7 +478,7 @@ export const guideTopics: GuideTopic[] = [
         heading: "Safe Food Storage",
         points: [
           "Cook food thoroughly — especially rice (Bacillus cereus risk)",
-          "Cooked food is safe for 2 hours at room temperature, 4 hours if covered",
+          "Cooked food is safe for maximum 2 hours at room temperature — discard after that (WHO guideline)",
           "In Indian summer, food spoils in 1-2 hours — eat quickly or preserve",
           "Store raw and cooked food separately to prevent cross-contamination",
           "Use clean utensils — wash with hot water or boil in emergencies",
