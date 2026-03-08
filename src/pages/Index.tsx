@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Radio, Braces, Siren, Backpack } from "lucide-react";
+import { BookOpen, Radio, Braces, Siren, Backpack, AlertTriangle, Navigation, Zap } from "lucide-react";
 
 const sections = [
+  { to: "/emergency", icon: AlertTriangle, label: "🚨 Emergency Mode", desc: "Call, locate, signal — one tap", highlight: true },
+  { to: "/emergency-checklist", icon: Zap, label: "⚡ 3-Min Checklist", desc: "Step-by-step disaster response" },
   { to: "/edc", icon: Backpack, label: "EDC Kit", desc: "Everyday carry survival checklist" },
-  { to: "/guide", icon: BookOpen, label: "Survival Guide", desc: "19 topics — first aid, disasters, navigation & more" },
-  { to: "/morse", icon: Radio, label: "Morse Code", desc: "Encode & decode messages" },
-  { to: "/braille", icon: Braces, label: "Braille", desc: "Braille alphabet reference" },
+  { to: "/guide", icon: BookOpen, label: "Survival Guide", desc: "24 topics — first aid, disasters & more" },
+  { to: "/morse", icon: Radio, label: "Morse Code", desc: "Encode, decode & flash messages" },
+  { to: "/braille", icon: Braces, label: "Braille", desc: "Braille alphabet & survival phrases" },
   { to: "/sos", icon: Siren, label: "SOS Signals", desc: "Emergency signals & India helplines" },
+  { to: "/compass", icon: Navigation, label: "🧭 Compass", desc: "Digital compass for navigation" },
 ];
 
 const Index = () => {
@@ -20,13 +23,17 @@ const Index = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
-        {sections.map(({ to, icon: Icon, label, desc }) => (
+        {sections.map(({ to, icon: Icon, label, desc, highlight }) => (
           <Link
             key={to}
             to={to}
-            className="flex items-start gap-4 rounded-lg border border-border bg-card p-5 hover:border-primary/60 hover:bg-card/80 transition-colors"
+            className={`flex items-start gap-4 rounded-lg border p-5 transition-colors ${
+              highlight
+                ? "border-destructive/60 bg-destructive/10 hover:bg-destructive/20 sm:col-span-2"
+                : "border-border bg-card hover:border-primary/60 hover:bg-card/80"
+            }`}
           >
-            <Icon className="h-7 w-7 text-primary shrink-0 mt-0.5" />
+            <Icon className={`h-7 w-7 shrink-0 mt-0.5 ${highlight ? "text-destructive" : "text-primary"}`} />
             <div>
               <p className="font-semibold text-lg leading-tight">{label}</p>
               <p className="text-sm text-muted-foreground">{desc}</p>
@@ -35,7 +42,7 @@ const Index = () => {
         ))}
       </div>
 
-      <p className="text-xs text-muted-foreground mt-12 mono">v2.0 — works 100% offline</p>
+      <p className="text-xs text-muted-foreground mt-12 mono">v3.0 — works 100% offline</p>
     </div>
   );
 };
