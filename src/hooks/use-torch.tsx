@@ -7,6 +7,7 @@ type TorchState = {
   toggleTorch: () => Promise<void>;
   enableTorch: () => Promise<void>;
   disableTorch: () => Promise<void>;
+  releaseTorch: () => void;
 };
 
 /**
