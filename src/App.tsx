@@ -9,6 +9,7 @@ import Checklist from "./pages/Checklist";
 import MorseCode from "./pages/MorseCode";
 import Braille from "./pages/Braille";
 import SOS from "./pages/SOS";
+import EDCKit from "./pages/EDCKit";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
