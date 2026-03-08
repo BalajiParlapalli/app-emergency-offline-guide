@@ -105,7 +105,7 @@ const MorseCode = () => {
 
       {/* Flashlight screen */}
       {flashOn && (
-        <div className="fixed inset-0 z-50 bg-white" onClick={stopFlash} />
+        <div className="fixed inset-0 z-50 bg-white" role="status" aria-label="Morse code flashing" onClick={stopFlash} />
       )}
 
       {/* Survival phrases */}
