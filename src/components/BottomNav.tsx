@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, BookOpen, AlertTriangle, StickyNote, Settings } from "lucide-react";
+import { Home, BookOpen, AlertTriangle, StickyNote } from "lucide-react";
 
 const navItems = [
   { to: "/", icon: Home, label: "Home" },
@@ -27,7 +27,7 @@ const BottomNav = () => {
               className={`touch-target flex flex-col items-center justify-center gap-0.5 py-2 px-3 text-xs font-medium transition-colors ${
                 active ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
-              aria-label={label}
+              aria-label={`Navigate to ${label}`}
               aria-current={active ? "page" : undefined}
             >
               <Icon className="h-5 w-5" aria-hidden="true" />
