@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { BookOpen, ClipboardList, Radio, Braces, Siren, Backpack } from "lucide-react";
+import { BookOpen, Radio, Braces, Siren, Backpack } from "lucide-react";
 
 const sections = [
-  { to: "/edc", icon: Backpack, label: "EDC Kit", desc: "What to pack for survival" },
-  { to: "/guide", icon: BookOpen, label: "Survival Guide", desc: "Water, food, shelter, first aid & fire" },
-  { to: "/checklist", icon: ClipboardList, label: "Checklist", desc: "Track your supplies & gear" },
+  { to: "/edc", icon: Backpack, label: "EDC Kit", desc: "Everyday carry survival checklist" },
+  { to: "/guide", icon: BookOpen, label: "Survival Guide", desc: "19 topics — first aid, disasters, navigation & more" },
   { to: "/morse", icon: Radio, label: "Morse Code", desc: "Encode & decode messages" },
   { to: "/braille", icon: Braces, label: "Braille", desc: "Braille alphabet reference" },
   { to: "/sos", icon: Siren, label: "SOS Signals", desc: "Emergency signals & India helplines" },
@@ -36,7 +35,7 @@ const Index = () => {
         ))}
       </div>
 
-      <p className="text-xs text-muted-foreground mt-12 mono">v1.0 — works 100% offline</p>
+      <p className="text-xs text-muted-foreground mt-12 mono">v2.0 — works 100% offline</p>
     </div>
   );
 };
