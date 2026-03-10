@@ -1,7 +1,9 @@
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand } from "lucide-react";
+import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import ClockWidget from "@/components/ClockWidget";
+import { guideTopics } from "@/data/guideData";
 
 const sections = [
   { to: "/emergency-checklist", icon: Zap, label: "3-Min Checklist", pictogram: "⚡", desc: "Step-by-step disaster response" },
@@ -22,6 +24,34 @@ const features = [
 ];
 
 const Index = () => {
+  const [query, setQuery] = useState("");
+
+  const searchResults = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (q.length < 2) return null;
+    const results: { topicSlug: string; topicTitle: string; topicEmoji: string; heading: string; point: string }[] = [];
+    for (const topic of guideTopics) {
+      for (const section of topic.sections) {
+        for (const point of section.points) {
+          if (
+            point.toLowerCase().includes(q) ||
+            section.heading.toLowerCase().includes(q) ||
+            topic.title.toLowerCase().includes(q)
+          ) {
+            results.push({
+              topicSlug: topic.slug,
+              topicTitle: topic.title,
+              topicEmoji: topic.emoji,
+              heading: section.heading,
+              point,
+            });
+          }
+        }
+      }
+    }
+    return results;
+  }, [query]);
+
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-8 pb-24">
       <a href="#main-tools" className="skip-link">Skip to main tools</a>
@@ -41,6 +71,55 @@ const Index = () => {
         <p className="text-muted-foreground mt-2 text-lg">An Emergency Offline Toolkit</p>
         <p className="text-sm text-muted-foreground mt-1">Made for India · Works without internet</p>
       </div>
+
+      {/* Search */}
+      <div className="w-full max-w-lg mb-4">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
+          <input
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search everything... (e.g. snake bite, ORS, fire)"
+            className="w-full bg-secondary border border-border rounded-md pl-9 pr-9 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+            aria-label="Search all survival topics"
+          />
+          {query && (
+            <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary" aria-label="Clear search">
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Search Results */}
+      {searchResults !== null ? (
+        <div className="w-full max-w-lg mb-6">
+          <p className="text-xs text-muted-foreground mb-3 mono">{searchResults.length} results</p>
+          {searchResults.length === 0 ? (
+            <p className="text-sm text-muted-foreground text-center py-8">No results found for "{query}"</p>
+          ) : (
+            <div className="space-y-2">
+              {searchResults.slice(0, 30).map((r, i) => (
+                <Link
+                  key={i}
+                  to={`/guide/${r.topicSlug}`}
+                  className="block border border-border rounded-lg px-4 py-3 hover:border-primary/60 hover:bg-secondary/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs">{r.topicEmoji}</span>
+                    <span className="text-xs text-muted-foreground">{r.topicTitle} › {r.heading}</span>
+                  </div>
+                  <p className="text-sm">{r.point}</p>
+                </Link>
+              ))}
+              {searchResults.length > 30 && (
+                <p className="text-xs text-muted-foreground text-center py-2">Showing first 30 results. Refine your search.</p>
+              )}
+            </div>
+          )}
+        </div>
+      ) : (
+      <>
 
       {/* Clock & Date Widget */}
       <div className="w-full max-w-lg">
@@ -108,6 +187,8 @@ const Index = () => {
         </div>
         <p className="text-xs text-muted-foreground mono">v4.0 — works 100% offline · accessible · India focused</p>
       </footer>
+      </>
+      )}
     </div>
   );
 };
