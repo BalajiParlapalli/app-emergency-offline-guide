@@ -72,6 +72,55 @@ const Index = () => {
         <p className="text-sm text-muted-foreground mt-1">Made for India · Works without internet</p>
       </div>
 
+      {/* Search */}
+      <div className="w-full max-w-lg mb-4">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
+          <input
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search everything... (e.g. snake bite, ORS, fire)"
+            className="w-full bg-secondary border border-border rounded-md pl-9 pr-9 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+            aria-label="Search all survival topics"
+          />
+          {query && (
+            <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary" aria-label="Clear search">
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Search Results */}
+      {searchResults !== null ? (
+        <div className="w-full max-w-lg mb-6">
+          <p className="text-xs text-muted-foreground mb-3 mono">{searchResults.length} results</p>
+          {searchResults.length === 0 ? (
+            <p className="text-sm text-muted-foreground text-center py-8">No results found for "{query}"</p>
+          ) : (
+            <div className="space-y-2">
+              {searchResults.slice(0, 30).map((r, i) => (
+                <Link
+                  key={i}
+                  to={`/guide/${r.topicSlug}`}
+                  className="block border border-border rounded-lg px-4 py-3 hover:border-primary/60 hover:bg-secondary/50 transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs">{r.topicEmoji}</span>
+                    <span className="text-xs text-muted-foreground">{r.topicTitle} › {r.heading}</span>
+                  </div>
+                  <p className="text-sm">{r.point}</p>
+                </Link>
+              ))}
+              {searchResults.length > 30 && (
+                <p className="text-xs text-muted-foreground text-center py-2">Showing first 30 results. Refine your search.</p>
+              )}
+            </div>
+          )}
+        </div>
+      ) : (
+      <>
+
       {/* Clock & Date Widget */}
       <div className="w-full max-w-lg">
         <ClockWidget />
