@@ -187,6 +187,8 @@ const Index = () => {
         </div>
         <p className="text-xs text-muted-foreground mono">v4.0 — works 100% offline · accessible · India focused</p>
       </footer>
+      </>
+      )}
     </div>
   );
 };
