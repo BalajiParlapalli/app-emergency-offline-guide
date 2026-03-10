@@ -24,6 +24,34 @@ const features = [
 ];
 
 const Index = () => {
+  const [query, setQuery] = useState("");
+
+  const searchResults = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (q.length < 2) return null;
+    const results: { topicSlug: string; topicTitle: string; topicEmoji: string; heading: string; point: string }[] = [];
+    for (const topic of guideTopics) {
+      for (const section of topic.sections) {
+        for (const point of section.points) {
+          if (
+            point.toLowerCase().includes(q) ||
+            section.heading.toLowerCase().includes(q) ||
+            topic.title.toLowerCase().includes(q)
+          ) {
+            results.push({
+              topicSlug: topic.slug,
+              topicTitle: topic.title,
+              topicEmoji: topic.emoji,
+              heading: section.heading,
+              point,
+            });
+          }
+        }
+      }
+    }
+    return results;
+  }, [query]);
+
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-8 pb-24">
       <a href="#main-tools" className="skip-link">Skip to main tools</a>
