@@ -58,10 +58,10 @@ const Index = () => {
     // Search vital signs
     for (const entry of vitalSignsSearchIndex) {
       if (
-        entry.param.toLowerCase().includes(q) ||
-        entry.category.toLowerCase().includes(q) ||
-        (entry.normal && entry.normal.toLowerCase().includes(q)) ||
-        (entry.warning && entry.warning.toLowerCase().includes(q))
+        normalizeSearch(entry.param).includes(q) ||
+        normalizeSearch(entry.category).includes(q) ||
+        (entry.normal && normalizeSearch(entry.normal).includes(q)) ||
+        (entry.warning && normalizeSearch(entry.warning).includes(q))
       ) {
         const detail = [entry.normal, entry.warning].filter(Boolean).join(" · ");
         results.push({
