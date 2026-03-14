@@ -44,6 +44,7 @@ const App = () => (
           <Route path="/emergency-checklist" element={<EmergencyChecklist />} />
           <Route path="/emergency" element={<EmergencyMode />} />
           <Route path="/notebook" element={<Notebook />} />
+          <Route path="/vital-signs" element={<VitalSigns />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNav />

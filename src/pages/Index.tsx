@@ -14,6 +14,7 @@ const sections = [
   { to: "/braille", icon: Braces, label: "Braille", pictogram: "⠃", desc: "Braille alphabet & survival phrases" },
   { to: "/edc", icon: Backpack, label: "EDC Kit", pictogram: "🎒", desc: "Everyday carry survival checklist" },
   { to: "/notebook", icon: StickyNote, label: "Notebook", pictogram: "📓", desc: "Personal notes & saved bookmarks" },
+  { to: "/vital-signs", icon: HeartPulse, label: "Vital Signs", pictogram: "🫀", desc: "Emergency vital signs by age & gender" },
 ];
 
 const features = [
