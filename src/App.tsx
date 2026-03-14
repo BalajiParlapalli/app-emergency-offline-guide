@@ -20,6 +20,7 @@ const Compass = lazy(() => import("./pages/Compass"));
 const EmergencyChecklist = lazy(() => import("./pages/EmergencyChecklist"));
 const EmergencyMode = lazy(() => import("./pages/EmergencyMode"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const VitalSigns = lazy(() => import("./pages/VitalSigns"));
 
 const App = () => (
   <TooltipProvider>
