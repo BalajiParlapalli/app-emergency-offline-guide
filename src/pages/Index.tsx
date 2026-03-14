@@ -124,7 +124,7 @@ const Index = () => {
               {searchResults.slice(0, 30).map((r, i) => (
                 <Link
                   key={i}
-                  to={`/guide/${r.topicSlug}`}
+                  to={r.link || `/guide/${r.topicSlug}`}
                   className="block border border-border rounded-lg px-4 py-3 hover:border-primary/60 hover:bg-secondary/50 transition-colors"
                 >
                   <div className="flex items-center gap-2 mb-1">
