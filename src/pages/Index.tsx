@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X } from "lucide-react";
+import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X, HeartPulse } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import ClockWidget from "@/components/ClockWidget";
 import { guideTopics } from "@/data/guideData";
