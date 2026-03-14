@@ -4,6 +4,7 @@ import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpac
 import ThemeToggle from "@/components/ThemeToggle";
 import ClockWidget from "@/components/ClockWidget";
 import { guideTopics } from "@/data/guideData";
+import { vitalSignsSearchIndex } from "@/data/vitalSignsData";
 
 const sections = [
   { to: "/emergency-checklist", icon: Zap, label: "3-Min Checklist", pictogram: "⚡", desc: "Step-by-step disaster response" },
@@ -30,7 +31,8 @@ const Index = () => {
   const searchResults = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (q.length < 2) return null;
-    const results: { topicSlug: string; topicTitle: string; topicEmoji: string; heading: string; point: string }[] = [];
+    const results: { topicSlug: string; topicTitle: string; topicEmoji: string; heading: string; point: string; link?: string }[] = [];
+    // Search guide topics
     for (const topic of guideTopics) {
       for (const section of topic.sections) {
         for (const point of section.points) {
@@ -48,6 +50,25 @@ const Index = () => {
             });
           }
         }
+      }
+    }
+    // Search vital signs
+    for (const entry of vitalSignsSearchIndex) {
+      if (
+        entry.param.toLowerCase().includes(q) ||
+        entry.category.toLowerCase().includes(q) ||
+        (entry.normal && entry.normal.toLowerCase().includes(q)) ||
+        (entry.warning && entry.warning.toLowerCase().includes(q))
+      ) {
+        const detail = [entry.normal, entry.warning].filter(Boolean).join(" · ");
+        results.push({
+          topicSlug: "",
+          topicTitle: "Vital Signs",
+          topicEmoji: "🫀",
+          heading: entry.category,
+          point: `${entry.param}: ${detail}`,
+          link: "/vital-signs",
+        });
       }
     }
     return results;
@@ -103,7 +124,7 @@ const Index = () => {
               {searchResults.slice(0, 30).map((r, i) => (
                 <Link
                   key={i}
-                  to={`/guide/${r.topicSlug}`}
+                  to={r.link || `/guide/${r.topicSlug}`}
                   className="block border border-border rounded-lg px-4 py-3 hover:border-primary/60 hover:bg-secondary/50 transition-colors"
                 >
                   <div className="flex items-center gap-2 mb-1">
