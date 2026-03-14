@@ -2,7 +2,7 @@ import { useState } from "react";
 import BackLink from "@/components/BackLink";
 import { AlertTriangle, Heart, Baby, Users, FlaskConical, ShieldAlert } from "lucide-react";
 
-type VitalRow = { param: string; normal: string; warning?: string; notes?: string };
+type VitalRow = { param: string; normal?: string; warning?: string; notes?: string };
 
 const adultGeneral: VitalRow[] = [
   { param: "Blood Pressure", normal: "90–120 / 60–80 mmHg", warning: ">180 / <90 systolic" },
