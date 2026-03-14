@@ -20,6 +20,7 @@ const Compass = lazy(() => import("./pages/Compass"));
 const EmergencyChecklist = lazy(() => import("./pages/EmergencyChecklist"));
 const EmergencyMode = lazy(() => import("./pages/EmergencyMode"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const VitalSigns = lazy(() => import("./pages/VitalSigns"));
 
 const App = () => (
   <TooltipProvider>
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/emergency-checklist" element={<EmergencyChecklist />} />
           <Route path="/emergency" element={<EmergencyMode />} />
           <Route path="/notebook" element={<Notebook />} />
+          <Route path="/vital-signs" element={<VitalSigns />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNav />

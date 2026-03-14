@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X } from "lucide-react";
+import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X, HeartPulse } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import ClockWidget from "@/components/ClockWidget";
 import { guideTopics } from "@/data/guideData";
@@ -14,6 +14,7 @@ const sections = [
   { to: "/braille", icon: Braces, label: "Braille", pictogram: "⠃", desc: "Braille alphabet & survival phrases" },
   { to: "/edc", icon: Backpack, label: "EDC Kit", pictogram: "🎒", desc: "Everyday carry survival checklist" },
   { to: "/notebook", icon: StickyNote, label: "Notebook", pictogram: "📓", desc: "Personal notes & saved bookmarks" },
+  { to: "/vital-signs", icon: HeartPulse, label: "Vital Signs", pictogram: "🫀", desc: "Emergency vital signs by age & gender" },
 ];
 
 const features = [
