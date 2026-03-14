@@ -40,9 +40,9 @@ const Index = () => {
       for (const section of topic.sections) {
         for (const point of section.points) {
           if (
-            point.toLowerCase().includes(q) ||
-            section.heading.toLowerCase().includes(q) ||
-            topic.title.toLowerCase().includes(q)
+            normalizeSearch(point).includes(q) ||
+            normalizeSearch(section.heading).includes(q) ||
+            normalizeSearch(topic.title).includes(q)
           ) {
             results.push({
               topicSlug: topic.slug,
