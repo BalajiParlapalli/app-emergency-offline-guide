@@ -28,8 +28,11 @@ const features = [
 const Index = () => {
   const [query, setQuery] = useState("");
 
+  const normalizeSearch = (text: string) =>
+    text.toLowerCase().normalize("NFKD").replace(/[₀₁₂₃₄₅₆₇₈₉]/g, (c) => String(c.charCodeAt(0) - 8320)).replace(/[^\w\s]/g, "");
+
   const searchResults = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = normalizeSearch(query.trim());
     if (q.length < 2) return null;
     const results: { topicSlug: string; topicTitle: string; topicEmoji: string; heading: string; point: string; link?: string }[] = [];
     // Search guide topics
