@@ -119,7 +119,7 @@ const VitalCard = ({ row, isCritical }: { row: VitalRow; isCritical?: boolean })
     <p className="font-semibold text-sm leading-tight mb-1.5">{row.param}</p>
     {row.normal && (
       <div className="flex items-center gap-2 mb-1">
-        <span className="inline-block w-2 h-2 rounded-full bg-green-500 shrink-0" aria-label="Normal range" />
+        <span className="inline-block w-2 h-2 rounded-full bg-accent shrink-0" aria-label="Normal range" />
         <span className="text-xs text-muted-foreground">{row.normal}</span>
       </div>
     )}
