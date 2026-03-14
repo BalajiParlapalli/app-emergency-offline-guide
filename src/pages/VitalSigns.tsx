@@ -196,7 +196,7 @@ const VitalSigns = () => {
         <p className="text-xs font-semibold mb-2">Legend</p>
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
+            <span className="w-2.5 h-2.5 rounded-full bg-accent" />
             <span className="text-xs text-muted-foreground">Normal range</span>
           </div>
           <div className="flex items-center gap-1.5">
