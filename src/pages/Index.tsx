@@ -80,6 +80,23 @@ const Index = () => {
         });
       }
     }
+    // Search advanced topics
+    for (const entry of advancedTopicsSearchIndex) {
+      if (
+        normalizeSearch(entry.point).includes(q) ||
+        normalizeSearch(entry.heading).includes(q) ||
+        normalizeSearch(entry.pageTitle).includes(q)
+      ) {
+        results.push({
+          topicSlug: "",
+          topicTitle: entry.pageTitle,
+          topicEmoji: entry.emoji,
+          heading: entry.heading,
+          point: entry.point,
+          link: entry.link,
+        });
+      }
+    }
     return results;
   }, [query]);
 
