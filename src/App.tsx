@@ -50,6 +50,11 @@ const App = () => (
           <Route path="/emergency" element={<EmergencyMode />} />
           <Route path="/notebook" element={<Notebook />} />
           <Route path="/vital-signs" element={<VitalSigns />} />
+          <Route path="/disaster-timeline" element={<DisasterTimeline />} />
+          <Route path="/power-planner" element={<PowerPlanner />} />
+          <Route path="/environmental-signals" element={<EnvironmentalSignals />} />
+          <Route path="/psychological-survival" element={<PsychologicalSurvival />} />
+          <Route path="/navigation-survival" element={<NavigationSurvival />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNav />

@@ -16,6 +16,11 @@ const sections = [
   { to: "/edc", icon: Backpack, label: "EDC Kit", pictogram: "🎒", desc: "Everyday carry survival checklist" },
   { to: "/notebook", icon: StickyNote, label: "Notebook", pictogram: "📓", desc: "Personal notes & saved bookmarks" },
   { to: "/vital-signs", icon: HeartPulse, label: "Vital Signs", pictogram: "🫀", desc: "Emergency vital signs by age & gender" },
+  { to: "/disaster-timeline", icon: Clock, label: "Disaster Timeline", pictogram: "⏱️", desc: "Before, during & after — step by step" },
+  { to: "/power-planner", icon: Battery, label: "Power & Comms", pictogram: "🔋", desc: "Battery strategy & offline communication" },
+  { to: "/environmental-signals", icon: Leaf, label: "Nature Signals", pictogram: "🌿", desc: "Read environmental warning signs" },
+  { to: "/psychological-survival", icon: Brain, label: "Psych Survival", pictogram: "🧠", desc: "Control panic, help others, recover" },
+  { to: "/navigation-survival", icon: MapPin, label: "Navigate No GPS", pictogram: "🧭", desc: "Sun, stars & terrain navigation" },
 ];
 
 const features = [
