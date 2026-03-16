@@ -1,10 +1,11 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X, HeartPulse } from "lucide-react";
+import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X, HeartPulse, Clock, Battery, Leaf, Brain, MapPin } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import ClockWidget from "@/components/ClockWidget";
 import { guideTopics } from "@/data/guideData";
 import { vitalSignsSearchIndex } from "@/data/vitalSignsData";
+import { advancedTopicsSearchIndex } from "@/data/advancedTopicsData";
 
 const sections = [
   { to: "/emergency-checklist", icon: Zap, label: "3-Min Checklist", pictogram: "⚡", desc: "Step-by-step disaster response" },
@@ -16,6 +17,11 @@ const sections = [
   { to: "/edc", icon: Backpack, label: "EDC Kit", pictogram: "🎒", desc: "Everyday carry survival checklist" },
   { to: "/notebook", icon: StickyNote, label: "Notebook", pictogram: "📓", desc: "Personal notes & saved bookmarks" },
   { to: "/vital-signs", icon: HeartPulse, label: "Vital Signs", pictogram: "🫀", desc: "Emergency vital signs by age & gender" },
+  { to: "/disaster-timeline", icon: Clock, label: "Disaster Timeline", pictogram: "⏱️", desc: "Before, during & after — step by step" },
+  { to: "/power-planner", icon: Battery, label: "Power & Comms", pictogram: "🔋", desc: "Battery strategy & offline communication" },
+  { to: "/environmental-signals", icon: Leaf, label: "Nature Signals", pictogram: "🌿", desc: "Read environmental warning signs" },
+  { to: "/psychological-survival", icon: Brain, label: "Psych Survival", pictogram: "🧠", desc: "Control panic, help others, recover" },
+  { to: "/navigation-survival", icon: MapPin, label: "Navigate No GPS", pictogram: "🧭", desc: "Sun, stars & terrain navigation" },
 ];
 
 const features = [
@@ -71,6 +77,23 @@ const Index = () => {
           heading: entry.category,
           point: `${entry.param}: ${detail}`,
           link: "/vital-signs",
+        });
+      }
+    }
+    // Search advanced topics
+    for (const entry of advancedTopicsSearchIndex) {
+      if (
+        normalizeSearch(entry.point).includes(q) ||
+        normalizeSearch(entry.heading).includes(q) ||
+        normalizeSearch(entry.pageTitle).includes(q)
+      ) {
+        results.push({
+          topicSlug: "",
+          topicTitle: entry.pageTitle,
+          topicEmoji: entry.emoji,
+          heading: entry.heading,
+          point: entry.point,
+          link: entry.link,
         });
       }
     }

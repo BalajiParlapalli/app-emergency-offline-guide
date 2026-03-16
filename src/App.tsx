@@ -21,6 +21,11 @@ const EmergencyChecklist = lazy(() => import("./pages/EmergencyChecklist"));
 const EmergencyMode = lazy(() => import("./pages/EmergencyMode"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const VitalSigns = lazy(() => import("./pages/VitalSigns"));
+const DisasterTimeline = lazy(() => import("./pages/DisasterTimeline"));
+const PowerPlanner = lazy(() => import("./pages/PowerPlanner"));
+const EnvironmentalSignals = lazy(() => import("./pages/EnvironmentalSignals"));
+const PsychologicalSurvival = lazy(() => import("./pages/PsychologicalSurvival"));
+const NavigationSurvival = lazy(() => import("./pages/NavigationSurvival"));
 
 const App = () => (
   <TooltipProvider>
@@ -45,6 +50,11 @@ const App = () => (
           <Route path="/emergency" element={<EmergencyMode />} />
           <Route path="/notebook" element={<Notebook />} />
           <Route path="/vital-signs" element={<VitalSigns />} />
+          <Route path="/disaster-timeline" element={<DisasterTimeline />} />
+          <Route path="/power-planner" element={<PowerPlanner />} />
+          <Route path="/environmental-signals" element={<EnvironmentalSignals />} />
+          <Route path="/psychological-survival" element={<PsychologicalSurvival />} />
+          <Route path="/navigation-survival" element={<NavigationSurvival />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNav />
