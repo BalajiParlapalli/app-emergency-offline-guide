@@ -5,6 +5,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import ClockWidget from "@/components/ClockWidget";
 import { guideTopics } from "@/data/guideData";
 import { vitalSignsSearchIndex } from "@/data/vitalSignsData";
+import { advancedTopicsSearchIndex } from "@/data/advancedTopicsData";
 
 const sections = [
   { to: "/emergency-checklist", icon: Zap, label: "3-Min Checklist", pictogram: "⚡", desc: "Step-by-step disaster response" },
