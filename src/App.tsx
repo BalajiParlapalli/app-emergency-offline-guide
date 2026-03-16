@@ -21,6 +21,11 @@ const EmergencyChecklist = lazy(() => import("./pages/EmergencyChecklist"));
 const EmergencyMode = lazy(() => import("./pages/EmergencyMode"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const VitalSigns = lazy(() => import("./pages/VitalSigns"));
+const DisasterTimeline = lazy(() => import("./pages/DisasterTimeline"));
+const PowerPlanner = lazy(() => import("./pages/PowerPlanner"));
+const EnvironmentalSignals = lazy(() => import("./pages/EnvironmentalSignals"));
+const PsychologicalSurvival = lazy(() => import("./pages/PsychologicalSurvival"));
+const NavigationSurvival = lazy(() => import("./pages/NavigationSurvival"));
 
 const App = () => (
   <TooltipProvider>
