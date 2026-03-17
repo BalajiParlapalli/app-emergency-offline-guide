@@ -7,27 +7,27 @@ const VoiceCommand = () => {
   const [listening, setListening] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [supported, setSupported] = useState(true);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (!SpeechRecognition) {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) {
       setSupported(false);
     }
   }, []);
 
   const startListening = useCallback(() => {
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (!SpeechRecognition) return;
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return;
 
-    const recognition = new SpeechRecognition();
+    const recognition = new SR();
     recognition.lang = "en-IN";
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.maxAlternatives = 5;
 
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event: SpeechRecognitionEvent) => {
       let matched = false;
 
       // Check all alternatives
@@ -52,7 +52,7 @@ const VoiceCommand = () => {
       setListening(false);
     };
 
-    recognition.onerror = (e: any) => {
+    recognition.onerror = (e: SpeechRecognitionErrorEvent) => {
       if (e.error === "no-speech") {
         setFeedback("No speech detected. Tap and speak clearly.");
       } else if (e.error === "not-allowed") {
