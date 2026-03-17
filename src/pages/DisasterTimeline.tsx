@@ -125,7 +125,7 @@ const disasters: Disaster[] = [
         actions: [
           "Check water supply for contamination — use ORS if diarrhoea starts",
           "Help neighbours if safe — prioritise elderly, disabled, and children",
-          "Report damaged infrastructure to local authorities (1077 — Disaster helpline)",
+          "Report damaged infrastructure to local authorities (1078 — NDMA Disaster helpline)",
           "Clean and disinfect all surfaces that contacted floodwater",
           "Discard all food that contacted floodwater or was unrefrigerated > 4 hours",
           "Watch for post-flood diseases: leptospirosis, dengue, cholera",
@@ -251,7 +251,7 @@ const disasters: Disaster[] = [
           "Anchor loose outdoor objects or move them inside",
           "Fill fuel tanks — vehicles may be needed for evacuation",
           "Charge all devices to 100%",
-          "Keep emergency numbers ready: 112, 1077 (Disaster), 108 (Ambulance)",
+          "Keep emergency numbers ready: 112, 1078 (NDMA Disaster), 108 (Ambulance)",
           "Pack medicines for at least 7 days — pharmacies may be inaccessible",
         ],
       },
@@ -396,7 +396,7 @@ const disasters: Disaster[] = [
         hours: "-48h",
         urgency: "prepare",
         actions: [
-          "IMD defines heatwave: plains >40°C (or 4.5°C above normal), severe >47°C",
+          "IMD defines heatwave: plains ≥40°C (or 4.5–6.4°C above normal); severe heatwave: ≥6.4°C above normal",
           "Stock ORS packets, electrolyte powder, buttermilk, raw mango (aam panna)",
           "Prepare cooling towels and ice packs — freeze water bottles",
           "Check on elderly neighbours who live alone — they are most vulnerable",
