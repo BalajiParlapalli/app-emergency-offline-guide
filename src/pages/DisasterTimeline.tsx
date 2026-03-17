@@ -125,7 +125,7 @@ const disasters: Disaster[] = [
         actions: [
           "Check water supply for contamination — use ORS if diarrhoea starts",
           "Help neighbours if safe — prioritise elderly, disabled, and children",
-          "Report damaged infrastructure to local authorities (1077 — Disaster helpline)",
+          "Report damaged infrastructure to local authorities (1078 — NDMA Disaster helpline)",
           "Clean and disinfect all surfaces that contacted floodwater",
           "Discard all food that contacted floodwater or was unrefrigerated > 4 hours",
           "Watch for post-flood diseases: leptospirosis, dengue, cholera",
