@@ -9,7 +9,7 @@ const Compass = () => {
 
   const startListening = useCallback(() => {
     const handleOrientation = (e: DeviceOrientationEvent) => {
-      const h = (e as any).webkitCompassHeading ?? (e.alpha != null ? (360 - e.alpha) % 360 : null);
+      const h = e.webkitCompassHeading ?? (e.alpha != null ? (360 - e.alpha) % 360 : null);
       if (h != null) setHeading(Math.round(h));
     };
 
@@ -18,7 +18,7 @@ const Compass = () => {
   }, []);
 
   const requestPermission = useCallback(async () => {
-    const DOE = DeviceOrientationEvent as any;
+    const DOE = DeviceOrientationEvent as unknown as DeviceOrientationEventConstructor;
     if (typeof DOE.requestPermission === "function") {
       try {
         const r = await DOE.requestPermission();
@@ -40,14 +40,14 @@ const Compass = () => {
       return;
     }
 
-    const DOE = DeviceOrientationEvent as any;
+    const DOE = DeviceOrientationEvent as unknown as DeviceOrientationEventConstructor;
     if (typeof DOE.requestPermission === "function") {
       // iOS 13+ needs user gesture to request
       setPermissionNeeded(true);
     } else {
       // Android / desktop — just listen
       const handleOrientation = (e: DeviceOrientationEvent) => {
-        const h = (e as any).webkitCompassHeading ?? (e.alpha != null ? (360 - e.alpha) % 360 : null);
+        const h = e.webkitCompassHeading ?? (e.alpha != null ? (360 - e.alpha) % 360 : null);
         if (h != null) setHeading(Math.round(h));
       };
       window.addEventListener("deviceorientation", handleOrientation, true);
