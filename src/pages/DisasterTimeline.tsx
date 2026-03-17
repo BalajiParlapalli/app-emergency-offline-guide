@@ -251,7 +251,7 @@ const disasters: Disaster[] = [
           "Anchor loose outdoor objects or move them inside",
           "Fill fuel tanks — vehicles may be needed for evacuation",
           "Charge all devices to 100%",
-          "Keep emergency numbers ready: 112, 1077 (Disaster), 108 (Ambulance)",
+          "Keep emergency numbers ready: 112, 1078 (NDMA Disaster), 108 (Ambulance)",
           "Pack medicines for at least 7 days — pharmacies may be inaccessible",
         ],
       },
