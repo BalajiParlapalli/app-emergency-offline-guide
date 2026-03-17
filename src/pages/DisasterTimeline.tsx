@@ -396,7 +396,7 @@ const disasters: Disaster[] = [
         hours: "-48h",
         urgency: "prepare",
         actions: [
-          "IMD defines heatwave: plains >40°C (or 4.5°C above normal), severe >47°C",
+          "IMD defines heatwave: plains ≥40°C (or 4.5–6.4°C above normal); severe heatwave: ≥6.4°C above normal",
           "Stock ORS packets, electrolyte powder, buttermilk, raw mango (aam panna)",
           "Prepare cooling towels and ice packs — freeze water bottles",
           "Check on elderly neighbours who live alone — they are most vulnerable",

@@ -196,7 +196,7 @@ const sections: Section[] = [
           "Symptoms persisting beyond 6 weeks with no improvement",
           "Inability to carry out daily activities: eating, sleeping, working",
           "Using alcohol or substances to cope",
-          "Thoughts of self-harm or suicide — call iCall: 9152987821 or AASRA: 9820466726",
+          "Thoughts of self-harm or suicide — call KIRAN: 1800-599-0019 (toll-free, 24/7) or iCall: 9152987821",
           "Emotional numbness that doesn't lift — feeling 'nothing' for weeks",
           "Persistent avoidance of anything related to the event (places, people, conversations)",
           "Children showing regression that lasts more than 4 weeks",
