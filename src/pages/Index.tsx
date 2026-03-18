@@ -99,6 +99,20 @@ const Index = () => {
         });
       }
     }
+    // Search multilingual phrases
+    for (const entry of phrasesSearchIndex) {
+      const haystack = [entry.english, entry.hindi, entry.tamil, entry.telugu, entry.kannada].join(" ");
+      if (normalizeSearch(haystack).includes(q)) {
+        results.push({
+          topicSlug: "",
+          topicTitle: "Emergency Phrases",
+          topicEmoji: "🗣️",
+          heading: entry.categoryTitle,
+          point: entry.english,
+          link: "/phrases",
+        });
+      }
+    }
     return results;
   }, [query]);
 
