@@ -2,7 +2,9 @@ import { lazy, Suspense } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import EmergencyMode from "./pages/EmergencyMode";
 import ScrollToTop from "./components/ScrollToTop";
+import OfflineBanner from "./components/OfflineBanner";
 
 const BottomNav = lazy(() => import("./components/BottomNav"));
 const VoiceCommand = lazy(() => import("./components/VoiceCommand"));
