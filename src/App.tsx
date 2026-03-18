@@ -20,7 +20,7 @@ const SOS = lazy(() => import("./pages/SOS"));
 const EDCKit = lazy(() => import("./pages/EDCKit"));
 const Compass = lazy(() => import("./pages/Compass"));
 const EmergencyChecklist = lazy(() => import("./pages/EmergencyChecklist"));
-const EmergencyMode = lazy(() => import("./pages/EmergencyMode"));
+
 const NotFound = lazy(() => import("./pages/NotFound"));
 const VitalSigns = lazy(() => import("./pages/VitalSigns"));
 const DisasterTimeline = lazy(() => import("./pages/DisasterTimeline"));
