@@ -2,7 +2,9 @@ import { lazy, Suspense } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import EmergencyMode from "./pages/EmergencyMode";
 import ScrollToTop from "./components/ScrollToTop";
+import OfflineBanner from "./components/OfflineBanner";
 
 const BottomNav = lazy(() => import("./components/BottomNav"));
 const VoiceCommand = lazy(() => import("./components/VoiceCommand"));
@@ -18,7 +20,7 @@ const SOS = lazy(() => import("./pages/SOS"));
 const EDCKit = lazy(() => import("./pages/EDCKit"));
 const Compass = lazy(() => import("./pages/Compass"));
 const EmergencyChecklist = lazy(() => import("./pages/EmergencyChecklist"));
-const EmergencyMode = lazy(() => import("./pages/EmergencyMode"));
+
 const NotFound = lazy(() => import("./pages/NotFound"));
 const VitalSigns = lazy(() => import("./pages/VitalSigns"));
 const DisasterTimeline = lazy(() => import("./pages/DisasterTimeline"));
@@ -29,6 +31,7 @@ const NavigationSurvival = lazy(() => import("./pages/NavigationSurvival"));
 
 const App = () => (
   <TooltipProvider>
+    <OfflineBanner />
     <Suspense fallback={null}>
       <Toaster />
       <Sonner />
