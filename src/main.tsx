@@ -126,5 +126,9 @@ window.addEventListener("unhandledrejection", (event) => {
   handleRuntimeFailure(event.reason);
 });
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>
+);
 

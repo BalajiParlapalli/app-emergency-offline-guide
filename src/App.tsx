@@ -31,6 +31,7 @@ const NavigationSurvival = lazy(() => import("./pages/NavigationSurvival"));
 
 const App = () => (
   <TooltipProvider>
+    <OfflineBanner />
     <Suspense fallback={null}>
       <Toaster />
       <Sonner />
