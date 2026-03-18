@@ -1,11 +1,12 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X, HeartPulse, Clock, Battery, Leaf, Brain, MapPin } from "lucide-react";
+import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X, HeartPulse, Clock, Battery, Leaf, Brain, MapPin, Globe } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import ClockWidget from "@/components/ClockWidget";
 import { guideTopics } from "@/data/guideData";
 import { vitalSignsSearchIndex } from "@/data/vitalSignsData";
 import { advancedTopicsSearchIndex } from "@/data/advancedTopicsData";
+import { phrasesSearchIndex, getPhraseOfTheDay, languages } from "@/data/phrasesData";
 
 const sections = [
   { to: "/emergency-checklist", icon: Zap, label: "3-Min Checklist", pictogram: "⚡", desc: "Step-by-step disaster response" },
@@ -22,6 +23,7 @@ const sections = [
   { to: "/environmental-signals", icon: Leaf, label: "Nature Signals", pictogram: "🌿", desc: "Read environmental warning signs" },
   { to: "/psychological-survival", icon: Brain, label: "Psych Survival", pictogram: "🧠", desc: "Control panic, help others, recover" },
   { to: "/navigation-survival", icon: MapPin, label: "Navigate No GPS", pictogram: "🧭", desc: "Sun, stars & terrain navigation" },
+  { to: "/phrases", icon: Globe, label: "Emergency Phrases", pictogram: "🗣️", desc: "Hindi, Tamil, Telugu, Kannada phrases" },
 ];
 
 const features = [
@@ -97,6 +99,20 @@ const Index = () => {
         });
       }
     }
+    // Search multilingual phrases
+    for (const entry of phrasesSearchIndex) {
+      const haystack = [entry.english, entry.hindi, entry.tamil, entry.telugu, entry.kannada].join(" ");
+      if (normalizeSearch(haystack).includes(q)) {
+        results.push({
+          topicSlug: "",
+          topicTitle: "Emergency Phrases",
+          topicEmoji: "🗣️",
+          heading: entry.categoryTitle,
+          point: entry.english,
+          link: "/phrases",
+        });
+      }
+    }
     return results;
   }, [query]);
 
@@ -168,6 +184,24 @@ const Index = () => {
         </div>
       ) : (
       <>
+
+      {/* Phrase of the Day */}
+      {(() => {
+        const potd = getPhraseOfTheDay();
+        const langMeta = languages.find(l => l.key === potd.lang);
+        const data = potd.phrase[potd.lang];
+        return (
+          <Link
+            to="/phrases"
+            className="w-full max-w-lg block rounded-lg border border-border bg-card hover:border-primary/60 p-4 mb-4 transition-colors"
+          >
+            <p className="text-xs text-muted-foreground mb-1">🗣️ Phrase of the Day · {langMeta?.label}</p>
+            <p className="text-lg font-bold leading-snug">{data.text}</p>
+            <p className="text-sm text-muted-foreground italic">{data.transliteration}</p>
+            <p className="text-xs text-muted-foreground mt-1">{potd.phrase.english}</p>
+          </Link>
+        );
+      })()}
 
       {/* Clock & Date Widget */}
       <div className="w-full max-w-lg">
