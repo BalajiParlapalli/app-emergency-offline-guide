@@ -23,6 +23,7 @@ const sections = [
   { to: "/environmental-signals", icon: Leaf, label: "Nature Signals", pictogram: "🌿", desc: "Read environmental warning signs" },
   { to: "/psychological-survival", icon: Brain, label: "Psych Survival", pictogram: "🧠", desc: "Control panic, help others, recover" },
   { to: "/navigation-survival", icon: MapPin, label: "Navigate No GPS", pictogram: "🧭", desc: "Sun, stars & terrain navigation" },
+  { to: "/phrases", icon: Globe, label: "Emergency Phrases", pictogram: "🗣️", desc: "Hindi, Tamil, Telugu, Kannada phrases" },
 ];
 
 const features = [
