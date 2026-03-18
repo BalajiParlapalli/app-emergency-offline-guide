@@ -63,6 +63,14 @@ export const commands: Record<string, string> = {
   "north star": "/navigation-survival",
   "polaris": "/navigation-survival",
   "shadow stick": "/navigation-survival",
+  "phrases": "/phrases",
+  "emergency phrases": "/phrases",
+  "multilingual": "/phrases",
+  "hindi": "/phrases",
+  "tamil": "/phrases",
+  "telugu": "/phrases",
+  "kannada": "/phrases",
+  "translate": "/phrases",
 };
 
 export const normalize = (text: string): string =>

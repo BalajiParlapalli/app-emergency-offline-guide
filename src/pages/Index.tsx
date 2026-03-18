@@ -185,6 +185,24 @@ const Index = () => {
       ) : (
       <>
 
+      {/* Phrase of the Day */}
+      {(() => {
+        const potd = getPhraseOfTheDay();
+        const langMeta = languages.find(l => l.key === potd.lang);
+        const data = potd.phrase[potd.lang];
+        return (
+          <Link
+            to="/phrases"
+            className="w-full max-w-lg block rounded-lg border border-border bg-card hover:border-primary/60 p-4 mb-4 transition-colors"
+          >
+            <p className="text-xs text-muted-foreground mb-1">🗣️ Phrase of the Day · {langMeta?.label}</p>
+            <p className="text-lg font-bold leading-snug">{data.text}</p>
+            <p className="text-sm text-muted-foreground italic">{data.transliteration}</p>
+            <p className="text-xs text-muted-foreground mt-1">{potd.phrase.english}</p>
+          </Link>
+        );
+      })()}
+
       {/* Clock & Date Widget */}
       <div className="w-full max-w-lg">
         <ClockWidget />
