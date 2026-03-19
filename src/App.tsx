@@ -29,6 +29,7 @@ const EnvironmentalSignals = lazy(() => import("./pages/EnvironmentalSignals"));
 const PsychologicalSurvival = lazy(() => import("./pages/PsychologicalSurvival"));
 const NavigationSurvival = lazy(() => import("./pages/NavigationSurvival"));
 const MultilingualPhrases = lazy(() => import("./pages/MultilingualPhrases"));
+const STOPMethod = lazy(() => import("./pages/STOPMethod"));
 
 const App = () => (
   <TooltipProvider>
