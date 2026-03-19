@@ -150,7 +150,7 @@ export const phraseCategories: PhraseCategory[] = [
         id: "m4",
         english: "He/She is not breathing",
         hindi: { text: "वो साँस नहीं ले रहा/रही", transliteration: "Vo saans nahi le raha/rahi" },
-        tamil: { text: "அவர் சுவாசிக்கவில்லை", transliteration: "Avar suvaasikkavlllai" },
+        tamil: { text: "அவர் சுவாசிக்கவில்லை", transliteration: "Avar suvaasikkavillai" },
         telugu: { text: "అతను/ఆమె ఊపిరి తీయడం లేదు", transliteration: "Atanu/Aame oopiri tiyadam ledu" },
         kannada: { text: "ಅವರು ಉಸಿರಾಡುತ್ತಿಲ್ಲ", transliteration: "Avaru usiraaduttilla" },
       },
