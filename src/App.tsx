@@ -61,6 +61,7 @@ const App = () => (
           <Route path="/psychological-survival" element={<PsychologicalSurvival />} />
           <Route path="/navigation-survival" element={<NavigationSurvival />} />
           <Route path="/phrases" element={<MultilingualPhrases />} />
+          <Route path="/stop" element={<STOPMethod />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNav />

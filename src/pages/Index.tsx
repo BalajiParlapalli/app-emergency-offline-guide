@@ -269,6 +269,9 @@ const Index = () => {
           </p>
         </div>
         <p className="text-xs text-muted-foreground mono">v4.0 — works 100% offline · accessible · India focused</p>
+        <p className="text-xs text-muted-foreground mt-2">
+          Made with ❤️ by <span className="font-semibold text-foreground">Balaji Parlapalli</span>
+        </p>
       </footer>
       </>
       )}
