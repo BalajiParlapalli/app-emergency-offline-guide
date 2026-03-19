@@ -71,6 +71,15 @@ export const commands: Record<string, string> = {
   "telugu": "/phrases",
   "kannada": "/phrases",
   "translate": "/phrases",
+  "stop": "/stop",
+  "stop method": "/stop",
+  "think": "/stop",
+  "plan": "/stop",
+  "decision": "/stop",
+  "what do i do": "/stop",
+  "what should i do": "/stop",
+  "im scared": "/stop",
+  "im panicking": "/stop",
 };
 
 export const normalize = (text: string): string =>

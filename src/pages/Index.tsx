@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X, HeartPulse, Clock, Battery, Leaf, Brain, MapPin, Globe } from "lucide-react";
+import { AlertTriangle, Zap, BookOpen, Siren, Navigation, Radio, Braces, Backpack, StickyNote, Shield, WifiOff, Accessibility, Hand, Search, X, HeartPulse, Clock, Battery, Leaf, Brain, MapPin, Globe, Octagon } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import ClockWidget from "@/components/ClockWidget";
 import { guideTopics } from "@/data/guideData";
@@ -24,6 +24,7 @@ const sections = [
   { to: "/psychological-survival", icon: Brain, label: "Psych Survival", pictogram: "🧠", desc: "Control panic, help others, recover" },
   { to: "/navigation-survival", icon: MapPin, label: "Navigate No GPS", pictogram: "🧭", desc: "Sun, stars & terrain navigation" },
   { to: "/phrases", icon: Globe, label: "Emergency Phrases", pictogram: "🗣️", desc: "Hindi, Tamil, Telugu, Kannada phrases" },
+  { to: "/stop", icon: Octagon, label: "STOP Method", pictogram: "🛑", desc: "Survival decision engine — think, then act" },
 ];
 
 const features = [
@@ -268,6 +269,9 @@ const Index = () => {
           </p>
         </div>
         <p className="text-xs text-muted-foreground mono">v4.0 — works 100% offline · accessible · India focused</p>
+        <p className="text-xs text-muted-foreground mt-2">
+          Made with ❤️ by <span className="font-semibold text-foreground">Balaji Parlapalli</span>
+        </p>
       </footer>
       </>
       )}

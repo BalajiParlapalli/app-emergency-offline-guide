@@ -29,6 +29,7 @@ const EnvironmentalSignals = lazy(() => import("./pages/EnvironmentalSignals"));
 const PsychologicalSurvival = lazy(() => import("./pages/PsychologicalSurvival"));
 const NavigationSurvival = lazy(() => import("./pages/NavigationSurvival"));
 const MultilingualPhrases = lazy(() => import("./pages/MultilingualPhrases"));
+const STOPMethod = lazy(() => import("./pages/STOPMethod"));
 
 const App = () => (
   <TooltipProvider>
@@ -60,6 +61,7 @@ const App = () => (
           <Route path="/psychological-survival" element={<PsychologicalSurvival />} />
           <Route path="/navigation-survival" element={<NavigationSurvival />} />
           <Route path="/phrases" element={<MultilingualPhrases />} />
+          <Route path="/stop" element={<STOPMethod />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNav />
