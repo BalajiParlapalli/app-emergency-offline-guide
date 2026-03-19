@@ -24,6 +24,7 @@ const sections = [
   { to: "/psychological-survival", icon: Brain, label: "Psych Survival", pictogram: "🧠", desc: "Control panic, help others, recover" },
   { to: "/navigation-survival", icon: MapPin, label: "Navigate No GPS", pictogram: "🧭", desc: "Sun, stars & terrain navigation" },
   { to: "/phrases", icon: Globe, label: "Emergency Phrases", pictogram: "🗣️", desc: "Hindi, Tamil, Telugu, Kannada phrases" },
+  { to: "/stop", icon: Octagon, label: "STOP Method", pictogram: "🛑", desc: "Survival decision engine — think, then act" },
 ];
 
 const features = [
