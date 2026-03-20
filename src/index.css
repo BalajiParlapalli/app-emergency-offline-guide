@@ -121,3 +121,15 @@
     min-width: 48px;
   }
 }
+
+/* Power saving mode — disables animations and heavy visuals */
+.power-save * {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+}
+
+.power-save img:not([data-essential]) {
+  filter: grayscale(1) brightness(0.8);
+}
+

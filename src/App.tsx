@@ -5,6 +5,7 @@ import Index from "./pages/Index";
 import EmergencyMode from "./pages/EmergencyMode";
 import ScrollToTop from "./components/ScrollToTop";
 import OfflineBanner from "./components/OfflineBanner";
+import PowerSaveBanner from "./components/PowerSaveBanner";
 
 const BottomNav = lazy(() => import("./components/BottomNav"));
 const VoiceCommand = lazy(() => import("./components/VoiceCommand"));
@@ -34,6 +35,7 @@ const STOPMethod = lazy(() => import("./pages/STOPMethod"));
 const App = () => (
   <TooltipProvider>
     <OfflineBanner />
+    <PowerSaveBanner />
     <Suspense fallback={null}>
       <Toaster />
       <Sonner />
