@@ -35,6 +35,7 @@ const STOPMethod = lazy(() => import("./pages/STOPMethod"));
 const App = () => (
   <TooltipProvider>
     <OfflineBanner />
+    <PowerSaveBanner />
     <Suspense fallback={null}>
       <Toaster />
       <Sonner />
