@@ -1,54 +1,64 @@
-# Welcome to your Lovable project
+# PB Emergency Offline Toolkit
 
-## Project info
+An offline-first emergency response toolkit designed to provide quick access to critical resources, emergency protocols, contact information, and operational guidance during disasters, network outages, and crisis situations.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- 🚨 Emergency response resources
+- 📱 Offline-first functionality
+- 📋 Quick access to emergency protocols
+- 📞 Emergency contact directory
+- 🗺️ Disaster response information
+- ⚡ Fast and lightweight interface
+- 🔒 Works without internet connectivity
+- 📦 Progressive Web App (PWA) support
 
-There are several ways of editing your application.
+## Purpose
 
-**Use Lovable**
+The PB Emergency Offline Toolkit helps emergency responders, field personnel, volunteers, and organizations access essential information when connectivity is limited or unavailable.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Offline Support
 
-Changes made via Lovable will be committed automatically to this repo.
+The application is designed to function without an internet connection after the initial load, ensuring uninterrupted access to emergency resources during critical situations.
 
-**Use your preferred IDE**
+Use Cases
+Disaster management
+Emergency response operations
+Field team coordination
+Community preparedness
+Crisis resource access
+Offline emergency reference
+Contributing
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Contributions, bug reports, and feature suggestions are welcome.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Follow these steps:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## License
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+This project is proprietary and intended for internal or authorized use only.
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Technology Stack
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- React
+- TypeScript
+- Progressive Web App (PWA)
+- Local Storage / Offline Caching
+- Responsive Design
 
-**Edit a file directly in GitHub**
+## Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Prerequisites
 
-**Use GitHub Codespaces**
+- Node.js 18+
+- npm or yarn
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Installation
+
+```bash
+git clone <repository-url>
+cd pb-emergency-offline-toolkit
+npm install
 
 ## What technologies are used for this project?
 
@@ -60,14 +70,4 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
